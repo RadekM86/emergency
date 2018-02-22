@@ -1,0 +1,22 @@
+{
+  "name": "emergency_route",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "json-server --watch db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RadekM86/Emergency_Route.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RadekM86/Emergency_Route/issues"
+  },
+  "homepage": "https://github.com/RadekM86/Emergency_Route#readme",
+  "dependencies": {
+    "json-server": "^0.12.1"
+  }
+}
