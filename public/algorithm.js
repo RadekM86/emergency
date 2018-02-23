@@ -6,13 +6,17 @@ function City(name, firestation){
     this.nodes = nodefinder(this.name);
 }
 
-function Road(name, time){
-    this.name=name;
-    this.time=time
+function Road(time){
+        this.name=name;
+        this.time=time
+}
+
+function Route(time){
+    this.time = time
 }
 
 var cities = [{name: "A", firestation: false}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}, {name: "F", firestation: false}, {name: "G", firestation: true}];
-var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}, {cities: ["F", "A"], time: 53},{cities:["F", "C"], time:5},{cities: ["C", "G"], time: 1},{cities: ["B", "D"], time: 7}];
+var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}, {cities: ["F", "A"], time: 5},{cities:["F", "C"], time:5},{cities: ["C", "G"], time: 1},{cities: ["B", "D"], time: 7}];
 
 function nodefinder(name){
     var connections = roads.filter(elem => elem.cities.indexOf(name)!==-1);
@@ -53,6 +57,10 @@ cityMap.forEach(el=>{
 function recursive (name){
     var object = getCityByName(name);
     console.log("im in: " + object.name)
+    if(object.firestation){
+        console.log("found it");
+        return true
+    } else{
     unvisited.splice(unvisited.indexOf(name), 1) 
     console.log(`unvisited ${unvisited}`)
     console.log(object.nodes);
@@ -63,6 +71,12 @@ function recursive (name){
     }else{
     for(let i=0; i<object.nodes.length;i++){
         var otherCity = "";
+        visitedTime.push(object.nodes[i].time)
+        var route = new Route(visitedTime.reduce((prev,curr)=>{return prev+curr}));
+        if (route.time<=10){
+            console.log("record time")
+            return true
+        }
         if(object.nodes[i].cities[0]===object.name){
             otherCity=object.nodes[i].cities[1];
         }else{
@@ -71,9 +85,15 @@ function recursive (name){
         deeperNodes.push(otherCity)
         if(object.nodes[i].time>10){
             dontGo.push(otherCity)
-        }
-        dontGo.push(object.name)
+         }else if(otherCity.firestation===true){
+                console.log("found it");
+                return true
+         }
+
+        dontGo.push(object.name);
+        visited.push(object.name)
     }
+
     console.log(deeperNodes)
     console.log('dontGo '+ dontGo)
     deeperNodes.filter(el=>{
@@ -83,63 +103,10 @@ function recursive (name){
     })
     var go = deeperNodes;
     console.log(go);
+    console.log(route)
+    console.log(`visited ${visited}`)
     go.forEach(recursive)
     }
-
 }
-    // for(let i=0; i<dontGo.length;i++){
-    //     deeperNodes.splice(deeperNodes.indexOf(dontGo[i]), 1)
-    // }
-    // if(deeperNodes.length===0){
-    //     return false
-    // }else{
-    //     console.log("dive deeper");
-    //     console.log(deeperNodes)
-    // }
-
-  
-
-
-
-    // if(object.nodes.some(el=>{
-    //     el.cities[0].firestation===true || el.cities[1].firestation===true
-    // })){
-    //     console.log("boo");
-    //     return
-    // }else{
-    //     if (unvisited.length===0){
-    //         console.log("found")
-    //     return 
-    //     }else{
-    //         object.nodes.forEach(el=>{visitedTime.push(el.time)})
-    //         object.nodes.forEach(el=>{
-    //             if(el.cities[0]!==object.name){
-    //                 visited.push(el.cities[0])
-    //             }else{visited.push(el.cities[1])
-    //             }})
-    //         var citiesInRange = [];
-    //         var range = visitedTime.filter((el, index)=>{
-    //              if(el<=10){
-    //                  citiesInRange.push(visited[index])
-    //                  visitedTime[index]=visitedTime[index] + el
-    //              }return el<=10
-    //             })
-    //         console.log("dive deeper");
-    //         console.log(citiesInRange)
-    //         var deeperNodes = [];
-    //         citiesInRange.forEach(el=>deeperNodes.push(getCityByName(el)))
-    //         console.log(deeperNodes)
-    //         console.log("big things happen now")
-    //          if(range.length>0){
-    //             for (let i=0; i<deeperNodes.length; i++){
-    //             recursive(deeperNodes[i].name);
-    //             return 
-    //         }}
-    //     }
-    
-    // }
-    
-
-
-
-recursive("F");
+}
+recursive("A");
