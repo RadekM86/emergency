@@ -55,6 +55,9 @@ function recursive (name){
     console.log(`unvisited ${unvisited}`)
     console.log(object.nodes);
     var deeperNodes = [];
+    if(unvisited.length===0){
+        return false
+    }else{
     for(let i=0; i<object.nodes.length;i++){
         var otherCity = "";
         if(object.nodes[i].cities[0]===object.name){
@@ -78,9 +81,9 @@ function recursive (name){
     var go = deeperNodes;
     console.log(go);
     go.forEach(recursive)
+    }
 
-
-
+}
     // for(let i=0; i<dontGo.length;i++){
     //     deeperNodes.splice(deeperNodes.indexOf(dontGo[i]), 1)
     // }
@@ -134,6 +137,6 @@ function recursive (name){
     // }
     
 
-}
+
 
 recursive("F");
