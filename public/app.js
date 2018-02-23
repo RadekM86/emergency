@@ -20,7 +20,7 @@ $(function() {
               li.append(newFireStation)
               li.append(deleteBtn);
               // li.append(editBtn);
-              ul.append(li);
+              ul.append(li)
             });
     };
     
@@ -30,6 +30,7 @@ $(function() {
       var form = $('.add_City').submit(function(e){
         if($('.get_name').val().length>0){
           e.preventDefault();
+          $('.placeholder').html('')
           var inputName = $('.get_name').val();
           var inputCheck = $('.check').is(':checked')
     
@@ -65,7 +66,12 @@ $(function() {
             console.log('Error');
             console.log(error);
           })
-      }});
+      }else{
+            e.preventDefault();
+            var placeholder = $(".placeholder").html("<h3>Nazwa miasta powinna zawierać conajmniej jeden znak</h3>").addClass('placeholder')
+      }
+    
+    });
     
     }
     

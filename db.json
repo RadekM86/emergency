@@ -22,23 +22,18 @@
     },
     {
       "id": 5,
-      "name": "Ełk",
-      "firestation": "false"
+      "name": "Epidauros",
+      "firestation": "true"
     },
     {
       "id": 6,
       "name": "Firenze",
-      "firestation": "false"
+      "firestation": "true"
     },
     {
       "id": 7,
-      "name": "Durbasdo",
-      "firestation": "false"
-    },
-    {
-      "id": 8,
-      "name": "Komunu",
-      "firestation": "false"
+      "name": "Genoa",
+      "firestation": "true"
     }
   ],
   "roads": [
