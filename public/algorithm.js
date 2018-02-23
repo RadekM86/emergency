@@ -3,7 +3,7 @@
 function City(name, firestation){
     this.name=name;
     this.firestation = firestation;
-    this.nodes = nodefinder(this.name)
+    this.nodes = nodefinder(this.name);
 }
 
 function Road(name, time){
@@ -45,7 +45,8 @@ function pathToFirestation(object){
 }
 
 function getCityByName(name){
-    return cityMap.filter(el=>el.name===name)
+    var result = cityMap.filter(el=>el.name===name)
+    return result[0]
 }
 
 function breadthFirstSearch(object){
@@ -66,6 +67,7 @@ function connectingNodes(name){
 }
 
 function dijkstra(object){
+
     var visited=[];
     var times=[];
     var unvisited=cityMap;
@@ -73,7 +75,6 @@ function dijkstra(object){
     if (index > -1) {
         unvisited.splice(index, 1);
     }
-
     var closest = object.nodes
     for(let i=0; i<closest.length; i++){
         visited.push(object.nodes[i])
@@ -82,11 +83,49 @@ function dijkstra(object){
     console.log("visited")
     console.log(visited)
     console.log(times)
+    console.log("dive deeper");
+    closest.filter((el,index)=>{
+        el.cities.splice(el.cities.indexOf(object.name), 1)
+        el.cities.map(el=>getCityByName(el.cities))
+        dijkstra(el.cities)
+})
 }
 
-
-console.log(dijkstra(cityMap[0]))
+function hasFirestation(obj){
+    if (obj.firestation === true){
+        return true
+    }
+}
+// console.log(dijkstra(cityMap[0]))
 // console.log(nodefinder("A"))
 // console.log(getCityByName("B"));
 // breadthFirstSearch(cityMap[5]);
 
+function recurring (name){
+    var object = getCityByName(name);
+    var visitedTime = [];
+    var visited = [];
+    console.log(object)
+    if (hasFirestation(object)){
+        return "found"
+    }else{
+        console.log("dive deeper");
+        object.nodes.forEach(el=>{visitedTime.push(el.time)})
+        object.nodes.forEach(el=>{
+            if(el.cities[0]!==object.name){
+                visited.push(el.cities[0])
+            }else{visited.push(el.cities[1])
+            }})
+
+        console.log(visitedTime);
+        console.log(visited)
+    }
+    // var nodeDeeper = getCityByName(object.nodes[0].cities[0])
+
+
+    // var deeperNodes = object.nodes.map(el=> recurring(el.cities[1]))
+    // console.log(deeperNodes)
+
+}
+
+recurring("A");
