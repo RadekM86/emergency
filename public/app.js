@@ -31,6 +31,7 @@ $(function() {
           console.log(inputName, inputCheck);
     
           var newCity = {
+            id: response.cites.length,
             name: inputName,
             firestation: inputCheck
           };
@@ -44,13 +45,11 @@ $(function() {
               console.log(response);
               var li = $('<li>')
               var newTitle = $('<h3>').text(response.name);
-              var newDescription = $('<p>').text(response.firestation);
               var deleteBtn = $("<button>").text("Usuń").addClass('delete');
               deleteBtn.data('id', response.id);
               var editBtn = $("<button>").text("Edytuj").addClass('edit');
               editBtn.data('id', response.id);
               li.append(newTitle);
-              li.append(newDescription);
               li.append(deleteBtn);
               li.append(editBtn);
               ul.append(li);
@@ -69,7 +68,7 @@ $(function() {
         var id = thisbtn.data('id');
           $.ajax({
             method: "DELETE",
-            url: url + "/cities"+ id,
+            url: url + "/cities/"+ id,
             dataType: "json",
           })
           .done(function(response){

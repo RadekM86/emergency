@@ -1,64 +1,29 @@
 {
   "cities": [
     {
-      "id": 0,
+      "id": 1,
       "name": "A",
       "firestation": true
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "B",
       "firestation": true
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "C",
       "firestation": false
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "D",
       "firestation": false
-    },
-    {
-      "id": 4,
-      "name": "E",
-      "firestation": true
-    },
-    {
-      "name": "G",
-      "firestation": "on",
-      "id": 5
-    },
-    {
-      "name": "Gds",
-      "firestation": "on",
-      "id": 6
-    },
-    {
-      "name": "Gdsasda",
-      "firestation": "on",
-      "id": 7
-    },
-    {
-      "name": "asdas",
-      "firestation": "true",
-      "id": 8
-    },
-    {
-      "name": "asdasasdasd",
-      "firestation": "false",
-      "id": 9
-    },
-    {
-      "name": "",
-      "firestation": "false",
-      "id": 10
     }
   ],
   "roads": [
     {
-      "id": 0,
+      "id": 1,
       "cities": [
         "A",
         "B"
@@ -66,7 +31,7 @@
       "time": 2
     },
     {
-      "id": 1,
+      "id": 2,
       "cities": [
         "A",
         "C"
@@ -74,7 +39,7 @@
       "time": 3
     },
     {
-      "id": 2,
+      "id": 3,
       "cities": [
         "A",
         "D"
@@ -82,7 +47,7 @@
       "time": 4
     },
     {
-      "id": 5,
+      "id": 4,
       "cities": [
         "A",
         "E"
