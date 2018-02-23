@@ -12,7 +12,7 @@ function Road(name, time){
 }
 
 var cities = [{name: "A", firestation: false}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}, {name: "F", firestation: false}, {name: "G", firestation: true}];
-var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}, {cities: ["F", "A"], time: 53},{cities:["F", "C"], time:25},{cities: ["C", "G"], time: 3},{cities: ["B", "D"], time: 7}];
+var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}, {cities: ["F", "A"], time: 53},{cities:["F", "C"], time:5},{cities: ["C", "G"], time: 1},{cities: ["B", "D"], time: 7}];
 
 function nodefinder(name){
     var connections = roads.filter(elem => elem.cities.indexOf(name)!==-1);
@@ -66,9 +66,30 @@ function recursive (name){
         if(object.nodes[i].time>10){
             dontGo.push(otherCity)
         }
+        dontGo.push(object.name)
     }
     console.log(deeperNodes)
     console.log('dontGo '+ dontGo)
+    deeperNodes.filter(el=>{
+        if(dontGo.includes(el)){
+            deeperNodes.splice(deeperNodes.indexOf(el), 1)
+        }
+    })
+    var go = deeperNodes;
+    console.log(go);
+    go.forEach(recursive)
+
+
+
+    // for(let i=0; i<dontGo.length;i++){
+    //     deeperNodes.splice(deeperNodes.indexOf(dontGo[i]), 1)
+    // }
+    // if(deeperNodes.length===0){
+    //     return false
+    // }else{
+    //     console.log("dive deeper");
+    //     console.log(deeperNodes)
+    // }
 
   
 
