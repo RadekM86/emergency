@@ -109,12 +109,11 @@ function recursive (name){
             unvisited.push(el.name)
         }
     })
-    console.log(unvisited)
     var visitedTime = [];
     var visited = [];
-    console.log(object)
-    if (hasFirestation(object)){
-        return "found"
+    if (hasFirestation(object)||unvisited.length===0){
+        console.log("found!!!!!!!!!!!!!!!!!");
+    return 
     }else{
         object.nodes.forEach(el=>{visitedTime.push(el.time)})
         object.nodes.forEach(el=>{
@@ -122,7 +121,6 @@ function recursive (name){
                 visited.push(el.cities[0])
             }else{visited.push(el.cities[1])
             }})
-
         console.log(visitedTime);
         console.log(visited)
         var citiesInRange = [];
@@ -133,15 +131,20 @@ function recursive (name){
              }return el<=10
             })
 
-
         console.log(citiesInRange);
         console.log(range)
         console.log("dive deeper");
+        var deeperNodes = [];
+        citiesInRange.forEach(el=>deeperNodes.push(getCityByName(el)))
+        console.log(deeperNodes)
+        if(range.length>0){
+            for (let i=0; i<deeperNodes.length; i++){
+            recursive(deeperNodes[i].name);
+            return 
+        }}
     }
-    var deeperNodes = [];
-    citiesInRange.forEach(el=>deeperNodes.push(getCityByName(el)))
-    console.log(deeperNodes)
 
+    // deeperNodes.forEach(el=>recursive(el.name))
     // var deeperNodes = object.nodes.map(el=> recurring(el.cities[1]))
     // console.log(deeperNodes)
 
