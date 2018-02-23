@@ -10,13 +10,16 @@ $(function() {
               console.log(cities);
               var li = $('<li>')
               var title = $('<h3>').text(cities.name);
-              var deleteBtn = $("<button>").text("Usuń").addClass('delete');
+              var newFireStation = $('<p>').text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":"")
+              var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
               deleteBtn.data('id', cities.id);
-              var editBtn = $("<button>").text("Edytuj").addClass('edit');
-              editBtn.data('id', cities.id);
+              cities.firestation==="true" && li.addClass('firestation')
+              // var editBtn = $("<button>").text("Edytuj").addClass('edit');
+              // editBtn.data('id', cities.id);
               li.append(title);
+              li.append(newFireStation)
               li.append(deleteBtn);
-              li.append(editBtn);
+              // li.append(editBtn);
               ul.append(li);
             });
     };
@@ -27,11 +30,10 @@ $(function() {
       var form = $('.add_City').submit(function(e){
         e.preventDefault();
           var inputName = $('.get_name').val();
-          var inputCheck = $('.check').is(':checked');
-          console.log(inputName, inputCheck);
+          var inputCheck = $('.check').is(':checked')
     
           var newCity = {
-            id: response.cites.length,
+            id: this.id,
             name: inputName,
             firestation: inputCheck
           };
@@ -45,13 +47,17 @@ $(function() {
               console.log(response);
               var li = $('<li>')
               var newTitle = $('<h3>').text(response.name);
+              var newFireStation = $('<p>').text(response.firestation==="true"?"posiada jednostkę straży pożarnej":"")
               var deleteBtn = $("<button>").text("Usuń").addClass('delete');
               deleteBtn.data('id', response.id);
-              var editBtn = $("<button>").text("Edytuj").addClass('edit');
-              editBtn.data('id', response.id);
+              // var editBtn = $("<button>").text("Edytuj").addClass('edit');
+              // editBtn.data('id', response.id);
               li.append(newTitle);
+              li.append(newFireStation)
               li.append(deleteBtn);
-              li.append(editBtn);
+              response.firestation==="true" && li.addClass('firestation')
+              $('.get_name').val('')
+              // li.append(editBtn);
               ul.append(li);
             })
             .fail(function(error){
@@ -82,37 +88,36 @@ $(function() {
       });
     
     }
-    function editCity(){
-      var editBtn = ul.on('click','.edit',function(){
-        var thisbtn = $(this);
-        var id = thisbtn.data('id');
-        var editTitle = thisbtn.prevAll().attr('contenteditable', true);
-        thisbtn.text('Zapisz');
+    // function editCity(){
+    //   var editBtn = ul.on('click','.edit',function(){
+    //     var thisbtn = $(this);
+    //     var id = thisbtn.data('id');
+    //     var editTitle = thisbtn.prevAll().attr('contenteditable', true);
+    //     thisbtn.text('Zapisz');
     
     
-        var newCity = {
-          title: $(this).parent().find('h3').text(),
-          description: $(this).parent().find('p').text()
-        };
-      $.ajax({
-      method: "PUT",
-      url: url + "/cities/" + id,
-      dataType: "json",
-      data: newCity
-      })
-        .done(function(response){
-        console.log("hurra");
-        console.log(response);
+    //     var newCity = {
+    //       title: $(this).parent().find('h3').text(),
+    //     };
+    //   $.ajax({
+    //   method: "PUT",
+    //   url: url + "/cities/" + id,
+    //   dataType: "json",
+    //   data: newCity
+    //   })
+    //     .done(function(response){
+    //     console.log("hurra");
+    //     console.log(response);
     
-        })
-        .fail(function(error){
-        console.log('Error');
-        console.log(error);
-      })
+    //     })
+    //     .fail(function(error){
+    //     console.log('Error');
+    //     console.log(error);
+    //   })
     
-    });
+    // });
     
-    };
+    // };
     
     function getcities(){
     $.ajax({
@@ -121,8 +126,6 @@ $(function() {
     dataType: "json"
     })
       .done(function(response){
-      console.log("hurra");
-      console.log(response);
       insertCity(response);
     
     
@@ -133,10 +136,10 @@ $(function() {
     })
     };
     
-    getcities();
-    removeCity();
-    addCity();
-    editCity();
+  getcities();
+  removeCity();
+  addCity();
+  // editCity();
     
     
     

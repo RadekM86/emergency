@@ -2,28 +2,28 @@
   "cities": [
     {
       "id": 1,
-      "name": "A",
-      "firestation": true
+      "name": "Alhambra",
+      "firestation": "false"
     },
     {
       "id": 2,
-      "name": "B",
-      "firestation": true
+      "name": "Barcelona",
+      "firestation": "true"
     },
     {
       "id": 3,
-      "name": "C",
-      "firestation": false
+      "name": "Cadiz",
+      "firestation": "true"
     },
     {
       "id": 4,
-      "name": "D",
-      "firestation": false
+      "name": "Darnius",
+      "firestation": "false"
     }
   ],
   "roads": [
     {
-      "id": 1,
+      "id": 0,
       "cities": [
         "A",
         "B"
@@ -31,7 +31,7 @@
       "time": 2
     },
     {
-      "id": 2,
+      "id": 1,
       "cities": [
         "A",
         "C"
@@ -39,7 +39,7 @@
       "time": 3
     },
     {
-      "id": 3,
+      "id": 2,
       "cities": [
         "A",
         "D"
@@ -47,7 +47,7 @@
       "time": 4
     },
     {
-      "id": 4,
+      "id": 3,
       "cities": [
         "A",
         "E"
