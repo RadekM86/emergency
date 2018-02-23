@@ -101,7 +101,7 @@ function hasFirestation(obj){
 // console.log(getCityByName("B"));
 // breadthFirstSearch(cityMap[5]);
 
-function recurring (name){
+function recursive (name){
     var object = getCityByName(name);
     var visitedTime = [];
     var visited = [];
@@ -109,7 +109,6 @@ function recurring (name){
     if (hasFirestation(object)){
         return "found"
     }else{
-        console.log("dive deeper");
         object.nodes.forEach(el=>{visitedTime.push(el.time)})
         object.nodes.forEach(el=>{
             if(el.cities[0]!==object.name){
@@ -119,6 +118,16 @@ function recurring (name){
 
         console.log(visitedTime);
         console.log(visited)
+        var citiesInRange = [];
+        var range = visitedTime.filter((el, index)=>{
+             if(el<=10){
+                 citiesInRange.push(visited[index])
+             }
+            })
+
+
+        console.log(citiesInRange);
+        console.log("dive deeper");
     }
     // var nodeDeeper = getCityByName(object.nodes[0].cities[0])
 
@@ -128,4 +137,4 @@ function recurring (name){
 
 }
 
-recurring("A");
+recursive("A");
