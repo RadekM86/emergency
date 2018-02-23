@@ -1,19 +1,19 @@
 $(function() {
     
         // variables for DOM
-        var ul = $(".repertuar");
+        var ul = $(".list");
     
         var url = "http://localhost:3000";
     
-    function insertCity(miasta){
-            miasta.forEach(function(miasta){
-              console.log(miasta);
+    function insertCity(cities){
+            cities.forEach(function(cities){
+              console.log(cities);
               var li = $('<li>')
-              var title = $('<h3>').text(miasta.nazwa);
+              var title = $('<h3>').text(cities.name);
               var deleteBtn = $("<button>").text("Usuń").addClass('delete');
-              deleteBtn.data('id', miasta.id);
+              deleteBtn.data('id', cities.id);
               var editBtn = $("<button>").text("Edytuj").addClass('edit');
-              editBtn.data('id', miasta.id);
+              editBtn.data('id', cities.id);
               li.append(title);
               li.append(deleteBtn);
               li.append(editBtn);
@@ -22,29 +22,29 @@ $(function() {
     };
     
     
-    function addCity(miasta){
+    function addCity(cities){
       var url = "http://localhost:3000";
       var form = $('.add_City').submit(function(e){
         e.preventDefault();
-          var insertTitle = $('.get_title').val();
-          var insertDesc = $('.check').val();
-          console.log('click');
+          var inputName = $('.get_name').val();
+          var inputCheck = $('.check').is(':checked');
+          console.log(inputName, inputCheck);
     
           var newCity = {
-            nazwa: insertTitle,
-            ma_jednostke: insertDesc
+            name: inputName,
+            firestation: inputCheck
           };
           $.ajax({
               method: "POST",
-              url: url + "/miasta/",
+              url: url + "/cities",
               dataType: "json",
               data: newCity
             })
             .done(function(response){
               console.log(response);
               var li = $('<li>')
-              var newTitle = $('<h3>').text(response.nazwa);
-              var newDescription = $('<p>').text(response.jednostka);
+              var newTitle = $('<h3>').text(response.name);
+              var newDescription = $('<p>').text(response.firestation);
               var deleteBtn = $("<button>").text("Usuń").addClass('delete');
               deleteBtn.data('id', response.id);
               var editBtn = $("<button>").text("Edytuj").addClass('edit');
@@ -69,7 +69,7 @@ $(function() {
         var id = thisbtn.data('id');
           $.ajax({
             method: "DELETE",
-            url: url + "/miasta/"+ id,
+            url: url + "/cities"+ id,
             dataType: "json",
           })
           .done(function(response){
@@ -97,7 +97,7 @@ $(function() {
         };
       $.ajax({
       method: "PUT",
-      url: url + "/miasta/" + id,
+      url: url + "/cities/" + id,
       dataType: "json",
       data: newCity
       })
@@ -115,10 +115,10 @@ $(function() {
     
     };
     
-    function getmiasta(){
+    function getcities(){
     $.ajax({
     method: "GET",
-    url: url + "/miasta",
+    url: url + "/cities",
     dataType: "json"
     })
       .done(function(response){
@@ -134,7 +134,7 @@ $(function() {
     })
     };
     
-    getmiasta();
+    getcities();
     removeCity();
     addCity();
     editCity();
