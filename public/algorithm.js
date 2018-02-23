@@ -45,17 +45,17 @@ function hasFirestation(obj){
 // console.log(nodefinder("A"))
 // console.log(getCityByName("B"));
 // breadthFirstSearch(cityMap[5]);
-
+var visitedTime = [];
+var visited = [];
+var unvisited=[];
+cityMap.forEach(el=>{
+        unvisited.push(el.name)
+})
 function recursive (name){
     var object = getCityByName(name);
-    var unvisited=[];
-    cityMap.forEach(el=>{
-        if(el.name!==name){
-            unvisited.push(el.name)
-        }
-    })
-    var visitedTime = [];
-    var visited = [];
+    unvisited.splice(unvisited.indexOf(name), 1) 
+    console.log(`unvisiteeeeeed ${unvisited}`)
+
     if (hasFirestation(object)||unvisited.length===0){
         console.log("found!!!!!!!!!!!!!!!!!");
     return 
@@ -66,7 +66,9 @@ function recursive (name){
                 visited.push(el.cities[0])
             }else{visited.push(el.cities[1])
             }})
+        console.log("visited time __________")
         console.log(visitedTime);
+        console.log("visited time __________")
         console.log(visited)
         var citiesInRange = [];
         var range = visitedTime.filter((el, index)=>{
