@@ -28,7 +28,8 @@ $(function() {
     function addCity(cities){
       var url = "http://localhost:3000";
       var form = $('.add_City').submit(function(e){
-        e.preventDefault();
+        if($('.get_name').val().length>0){
+          e.preventDefault();
           var inputName = $('.get_name').val();
           var inputCheck = $('.check').is(':checked')
     
@@ -48,7 +49,7 @@ $(function() {
               var li = $('<li>')
               var newTitle = $('<h3>').text(response.name);
               var newFireStation = $('<p>').text(response.firestation==="true"?"posiada jednostkę straży pożarnej":"")
-              var deleteBtn = $("<button>").text("Usuń").addClass('delete');
+              var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
               deleteBtn.data('id', response.id);
               // var editBtn = $("<button>").text("Edytuj").addClass('edit');
               // editBtn.data('id', response.id);
@@ -64,7 +65,7 @@ $(function() {
             console.log('Error');
             console.log(error);
           })
-      });
+      }});
     
     }
     

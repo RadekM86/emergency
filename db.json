@@ -13,11 +13,31 @@
     {
       "id": 3,
       "name": "Cadiz",
-      "firestation": "true"
+      "firestation": "false"
     },
     {
       "id": 4,
-      "name": "Darnius",
+      "name": "Dubrovnik",
+      "firestation": "false"
+    },
+    {
+      "id": 5,
+      "name": "Ełk",
+      "firestation": "false"
+    },
+    {
+      "id": 6,
+      "name": "Firenze",
+      "firestation": "false"
+    },
+    {
+      "id": 7,
+      "name": "Durbasdo",
+      "firestation": "false"
+    },
+    {
+      "id": 8,
+      "name": "Komunu",
       "firestation": "false"
     }
   ],
