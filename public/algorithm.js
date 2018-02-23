@@ -12,7 +12,7 @@ function Road(name, time){
 }
 
 var cities = [{name: "A", firestation: false}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}, {name: "F", firestation: false}, {name: "G", firestation: true}];
-var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}, {cities: ["F", "A"], time: 53},{cities:["F", "C"], time:5},{cities: ["C", "G"], time: 6}];
+var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}, {cities: ["F", "A"], time: 53},{cities:["F", "C"], time:5},{cities: ["C", "G"], time: 6},{cities: ["B", "D"], time: 7}];
 
 function nodefinder(name){
     var connections = roads.filter(elem => elem.cities.indexOf(name)!==-1);
@@ -74,7 +74,7 @@ function recursive (name){
         var range = visitedTime.filter((el, index)=>{
              if(el<=10){
                  citiesInRange.push(visited[index])
-
+                 visitedTime[index]=visitedTime[index] + el
              }return el<=10
             })
 
@@ -84,7 +84,7 @@ function recursive (name){
         var deeperNodes = [];
         citiesInRange.forEach(el=>deeperNodes.push(getCityByName(el)))
         console.log(deeperNodes)
-        if(range.length>0){
+         if(range.length>0){
             for (let i=0; i<deeperNodes.length; i++){
             recursive(deeperNodes[i].name);
             return 
