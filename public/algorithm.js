@@ -103,6 +103,13 @@ function hasFirestation(obj){
 
 function recursive (name){
     var object = getCityByName(name);
+    var unvisited=[];
+    cityMap.forEach(el=>{
+        if(el.name!==name){
+            unvisited.push(el.name)
+        }
+    })
+    console.log(unvisited)
     var visitedTime = [];
     var visited = [];
     console.log(object)
