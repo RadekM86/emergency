@@ -12,6 +12,10 @@ function City(name, firestation, nodes){
 //     this.nodes = nodefinder(this.name);
 // }
 
+function Nodes(cities, time){
+    this.cities = cities.join("");
+    this.time = time
+}
 
 function Route(time){
     this.time = time
@@ -25,7 +29,7 @@ var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cit
 function nodefinder(name){
     let newArr =[];
     arr = roads.filter(elem => elem.cities.indexOf(name)!==-1);
-    arr.map(el=>newArr.push(el.cities.filter(elem=>elem!==name)))
+    arr.map(el=>newArr.push(new Nodes(el.cities.filter(elem=>elem!==name), el.time)))
     // for(let i=0; i<arr.length;i++){
     //     arr[i].cities.splice(arr[i].cities.indexOf(name), 1);
     //     arr[i].cities = arr[i].cities.join("")
