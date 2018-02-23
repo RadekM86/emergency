@@ -1,3 +1,7 @@
+:root{
+  --ultramarine: #0b00db;
+ } 
+ 
 *{
   box-sizing: border-box;
   font-family: "Roboto", sans-serif
@@ -52,10 +56,10 @@ body{
 }
 
 .firestation{
-  border-left: 4px solid red !important
+  border-left: 4px solid var(--ultramarine) !important
 }
 .firestation p {
-  color: red;
+  color: var(--ultramarine);
   font-size: 0.7em;
 }
 
