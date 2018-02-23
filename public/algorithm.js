@@ -129,11 +129,13 @@ function recursive (name){
         var range = visitedTime.filter((el, index)=>{
              if(el<=10){
                  citiesInRange.push(visited[index])
-             }
+
+             }return el<=10
             })
 
 
         console.log(citiesInRange);
+        console.log(range)
         console.log("dive deeper");
     }
     var deeperNodes = [];
