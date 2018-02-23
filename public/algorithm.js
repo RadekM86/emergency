@@ -3,14 +3,8 @@
 function City(name, firestation, nodes){
     this.name=name;
     this.firestation = firestation;
-    this.nodes = [];
+    this.nodes = nodes;
 }
-
-// function City(name, firestation){
-//     this.name=name;
-//     this.firestation = firestation;
-//     this.nodes = nodefinder(this.name);
-// }
 
 function Nodes(cities, time){
     this.cities = cities.join("");
@@ -30,10 +24,6 @@ function nodefinder(name){
     let newArr =[];
     arr = roads.filter(elem => elem.cities.indexOf(name)!==-1);
     arr.map(el=>newArr.push(new Nodes(el.cities.filter(elem=>elem!==name), el.time)))
-    // for(let i=0; i<arr.length;i++){
-    //     arr[i].cities.splice(arr[i].cities.indexOf(name), 1);
-    //     arr[i].cities = arr[i].cities.join("")
-    // }
     return newArr
 }
 function cityBuilder(array){
@@ -43,10 +33,6 @@ function cityBuilder(array){
 
 
 var cityMap = cityBuilder(cities);
-
-// var firestationsMap = cityMap.filter(elem=>{
-//         return elem.firestation===true
-// })
 
 
 function getCityByName(name){
