@@ -48,6 +48,8 @@ var dontGo=[]
 cityMap.forEach(el=>{
         unvisited.push(el.name)
 })
+
+
 function recursive (name){
     var object = getCityByName(name);
     console.log("im in: " + object.name)
@@ -55,7 +57,8 @@ function recursive (name){
     console.log(`unvisited ${unvisited}`)
     console.log(object.nodes);
     var deeperNodes = [];
-    if(unvisited.length===0){
+    if(unvisited.length<1){
+        console.log('poop')
         return false
     }else{
     for(let i=0; i<object.nodes.length;i++){
