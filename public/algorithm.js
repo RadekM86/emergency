@@ -3,19 +3,28 @@
 function City(name, firestation, nodes){
     this.name=name;
     this.firestation = firestation;
-    this.nodes = nodes;
 }
 
 var cities = [{name: "A", firestation: true}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}];
-var roads = [{cities: [cities[0].name,cities[1].name], time: 4}, {cities: [cities[1].name,cities[2].name], time: 10}, {cities: [cities[2].name,cities[3].name], time: 4}, {cities: [cities[3].name,cities[4].name], time: 3}];
+var roads = [{cities: ["A", "B"], time: 4}, {cities: ["B", "C"], time: 10}, {cities: ["A", "C"], time: 8}, {cities: ["D", "E"], time: 3}];
 
 
-function buildGraph(nodes, edges){
-    var nodes = [];
-    nodes = cities.map(elem=>{
-        elem.connections = nodes.filter
-    })
+function cityBuilder(){
+    var cityMap = cities.map(el=>new City(el.name, el.firestation))
+    return cityMap
 }
+
+function nodefinder(name){
+   var connections = roads.filter(elem => elem.cities.indexOf(name)!==-1)
+   return connections
+}
+
+var cityMap = cityBuilder();
+
+
+// .map(el=>new City(name, el.firestation,el.time))
+
+var cityA = new City("A", true, ["B", "C"])
 
 var firestationsMap = cities.filter(elem=>{
         return elem.firestation===true
@@ -24,7 +33,8 @@ var firestationsMap = cities.filter(elem=>{
 
 
 
-console.log(firestationsMap)
+console.log(firestationsMap);
+console.log(cityA)
 
 // function dijkstra(Object, maximum){
 
