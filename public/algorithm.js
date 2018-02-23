@@ -129,8 +129,9 @@ function recursive (name){
         console.log(citiesInRange);
         console.log("dive deeper");
     }
-    // var nodeDeeper = getCityByName(object.nodes[0].cities[0])
-
+    var deeperNodes = [];
+    citiesInRange.forEach(el=>deeperNodes.push(getCityByName(el)))
+    console.log(deeperNodes)
 
     // var deeperNodes = object.nodes.map(el=> recurring(el.cities[1]))
     // console.log(deeperNodes)
