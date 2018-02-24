@@ -51,20 +51,22 @@ var fastestResponse = [];
 let reversedBFS = (name, goal, time) =>{
     let object = getCityByName(name);
     console.log("I'm in: " + object.name + " looking for " + goal);
+    console.log(object.nodes)
     let nodesArray = object.nodes.map(el=>el.name);
-    console.log(nodesArray);
     let timesArray = object.nodes.map(el=>el.time);
-    console.log(timesArray)
     let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
     searchTimesArray.push(searchTime);
     fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
+    console.log(searchTime)
     console.log(nodesArray.indexOf(goal))
-    if ((nodesArray.indexOf(goal)>-1)&&fastestResponse[0]<=10){
-        return true
-    }else{
-        object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
-        return false
-    }
+    if(fastestResponse[0]<10){
+        if (nodesArray.indexOf(goal)>-1){
+            return true
+        }else{
+            object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
+            return false
+        }
+    }return false
 }
 
 
