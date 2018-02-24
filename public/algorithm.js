@@ -74,25 +74,31 @@ function recursive (name){
     }
 }
 // recursive("A");
-
+var comeFrom = "";
 function pathFinder(name){
     var object = getCityByName(name);
     console.log("I'm in: " + object.name);
+    console.log(object)
+    console.log("come from: " + comeFrom)
     if(object.firestation===true ){
         console.log("found it!");
         return true;
     }else{
-        for(let i=0; i<object.nodes.length; i++){
-            var looking=getCityByName(object.nodes[i].cities);
-            console.log(looking.nodes);
-            if(pathFinder(looking.name)){
-                console.log("found it...")
-                return true
-            }else(pathFinder(looking.name))
+        if(comeFrom!==object.name){
+            for(let i=0; i<object.nodes.length; i++){
+                comeFrom=object.nodes[i].cities;
+                var looking=getCityByName(object.nodes[i].cities);
+                console.log(looking.nodes);
+                if(pathFinder(looking.name)){
+                    console.log("found it...")
+                    return true
+                }return false
+            }return false
         }
+
         console.log("false")
     }
 }
 
 // && route.time.reduce((prev,curr)=>{return prev+curr})<=10)
-pathFinder("C");
+pathFinder("F");
