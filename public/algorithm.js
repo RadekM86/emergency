@@ -83,9 +83,16 @@ function pathFinder(name){
         console.log("found it!");
         return true;
     }else{
-        
-        return false
+        for(let i=0; i<object.nodes.length; i++){
+            var looking=getCityByName(object.nodes[i].cities);
+            console.log(looking.nodes);
+            if(looking.firestation){
+                console.log("found it")
+                return true
+            }
+        }
+        console.log("false")
     }
 }
 
-pathFinder("A");
+pathFinder("F");
