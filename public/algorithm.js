@@ -130,6 +130,7 @@ let reversedBFS = (name, goal, time) =>{
 
 //lets look from ends to start
 let search = (goal) => {
+    searchTimesArray = [];
     let firestationsNames = firestations.map(el=>el.name);
     console.log(firestationsNames)
     if (firestationsNames.indexOf(goal)!==-1){
@@ -146,4 +147,14 @@ let search = (goal) => {
     }
 }
 
-search("C")
+let shortestWay = (name)=>{
+    var fastestResponse = searchTimesArray.sort((a, b)=>{return a-b})
+    do{
+        console.log("found it in " + fastestResponse[0])
+        search(name)
+    }
+    while(fastestResponse[0]>10);
+    return true
+}
+
+shortestWay("A")
