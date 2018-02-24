@@ -11,7 +11,8 @@ function Nodes(cities, time){
     this.time = time
 }
 
-function Route(time){
+function Route(cities, time){
+    this.cities = cities;
     this.time = time
 }
 
@@ -43,7 +44,6 @@ function getCityByName(name){
 
 
 
-var visitedTime = [];
 var visited = [];
 var unvisited=[];
 var dontGo=[];
@@ -73,4 +73,19 @@ function recursive (name){
         console.log(route)
     }
 }
-recursive("A");
+// recursive("A");
+
+function pathFinder(name){
+    var object = getCityByName(name);
+    console.log("I'm in: " + object.name);
+    var route = new Route(object.name, [0]);
+    if(object.firestation===true && route.time.reduce((prev,curr)=>{return prev+curr})<=10){
+        console.log("found it!");
+        return true;
+    }else{
+        
+        return false
+    }
+}
+
+pathFinder("A");
