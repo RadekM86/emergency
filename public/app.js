@@ -20,7 +20,7 @@ function Nodes(cities, time){
   this.time = time
 }
 
-//variables for the algorithm
+//variables and functions for the algorithm
 
 var max = 10;
 var cities = [];
@@ -107,12 +107,14 @@ function cityBuilder(array){
                 li.addClass('outOfRange')
               }
               var title = $('<h3>').text(cities.name);
+              var icon = $('<i class="fa fa-building"></i>')
               var info = $('<p>')
               var infoplaceholder= (shortestWay(cities.name)===true)?"miasto w zasięgu straży pożarnej":"miasto poza zasięgiem straży pożarnej"
               info.text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":infoplaceholder);
               var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
               deleteBtn.data('id', cities.id);
-              cities.firestation==="true" && li.addClass('firestation')
+              cities.firestation==="true" && li.addClass('firestation');
+              li.append(icon)
               li.append(title);
               li.append(info)
               li.append(deleteBtn);
@@ -301,8 +303,8 @@ function cityBuilder(array){
       url: url + "/roads",
       dataType: "json"
       })
-        .done(function(response){
-        roads = response.map(el=>el)
+      .done(function(response){
+      roads = response.map(el=>el)
       
         })
         .fail(function(error){
