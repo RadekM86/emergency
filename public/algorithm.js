@@ -108,18 +108,24 @@ function pathFinder(name){
 }
 
 // && route.time.reduce((prev,curr)=>{return prev+curr})<=10)
+var searchTimesArray = [];
 
-
-let reversedBFS = (name, goal) =>{
+let reversedBFS = (name, goal, time) =>{
     let object = getCityByName(name);
     console.log("I'm in: " + object.name + " looking for " + goal);
-    let nodesArray = object.nodes.map(el=>el.cities)
+    let nodesArray = object.nodes.map(el=>el.cities);
+    let timesArray = object.nodes.map(el=>el.time);
     console.log("nodes array " + nodesArray);
-    if (nodesArray.indexOf(goal)!==-1){
-        console.log("found " + goal)
+    console.log("times array " + timesArray)
+    let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
+    searchTimesArray.push(searchTime)
+    if ((nodesArray.indexOf(goal)!==-1)&&(searchTime<=10)){
+        console.log("found " + goal + " in " + searchTime)
+        console.log("search times: " + searchTimesArray)
         return true
+    }else{
+        object.nodes.forEach(el=> reversedBFS(el.cities, goal, el.time))
     }
-    return false
 }
 
 //lets look from ends to start
@@ -130,9 +136,14 @@ let search = (goal) => {
         console.log("found it!!!!!")
         return true
     }else{
-        firestations.forEach(el=> reversedBFS(el.name, goal))
-        return true
+        firestations.forEach(el=> {
+            if(reversedBFS(el.name, goal, 0)===true){
+                return true
+            }return false
+        }
+    
+    )
     }
 }
 
-search("A")
+search("C")
