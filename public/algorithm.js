@@ -78,8 +78,7 @@ function recursive (name){
 function pathFinder(name){
     var object = getCityByName(name);
     console.log("I'm in: " + object.name);
-    var route = new Route(object.name, [0]);
-    if(object.firestation===true && route.time.reduce((prev,curr)=>{return prev+curr})<=10){
+    if(object.firestation===true ){
         console.log("found it!");
         return true;
     }else{
@@ -87,12 +86,13 @@ function pathFinder(name){
             var looking=getCityByName(object.nodes[i].cities);
             console.log(looking.nodes);
             if(pathFinder(looking.name)){
-                console.log("found it")
+                console.log("found it...")
                 return true
-            }
+            }else(pathFinder(looking.name))
         }
         console.log("false")
     }
 }
 
+// && route.time.reduce((prev,curr)=>{return prev+curr})<=10)
 pathFinder("C");
