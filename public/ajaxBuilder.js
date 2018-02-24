@@ -1,4 +1,4 @@
-export default ajaxBuilder = (url)=>{
+var ajaxBuilder = (url)=>{
     // variables for DOM
     
     var url = "http://localhost:3000";
@@ -25,7 +25,7 @@ export default ajaxBuilder = (url)=>{
         })
     };
     
-    function getcities(){
+    function getCities(){
         $.ajax({
         method: "GET",
         url: url + "/cities",
@@ -42,21 +42,22 @@ export default ajaxBuilder = (url)=>{
           console.log(error);
         })
         };
-    
-    function getcities(){
+    function getMax(){
         $.ajax({
         method: "GET",
-        url: url + "/cities",
+        url: url + "/max",
         dataType: "json"
         })
         .done(function(response){
-        getRoads();
-        insertCity(response);
+        max = response.time
         })
         .fail(function(error){
         console.log('Error');
         console.log(error);
         })
-    };
-    return new City(getRoads, )
+        };
+
+    return new City(getRoads,getCities, getMax)
 }
+
+export default ajaxBuilder;

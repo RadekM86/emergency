@@ -97,7 +97,6 @@ function cityBuilder(array){
 
       var firestations = cityMap.filter(el=>el.firestation==="true");
       cities.forEach(function(cities){
-              console.log("stations")
               console.log(firestations);
               // console.log(shortestWay(cities.name));
               console.log(search(cities.name, firestations))
@@ -259,7 +258,10 @@ function cityBuilder(array){
     
     }
 
-    function getMax(){
+
+  
+  
+  function getMax(){
       $.ajax({
       method: "GET",
       url: url + "/max",
@@ -275,7 +277,7 @@ function cityBuilder(array){
       })
       };
     
-    function getcities(){
+  function getCities(){
     $.ajax({
     method: "GET",
     url: url + "/cities",
@@ -292,8 +294,8 @@ function cityBuilder(array){
       console.log(error);
     })
     };
-
-    function getRoads(){
+  
+  function getRoads(){
       $.ajax({
       method: "GET",
       url: url + "/roads",
@@ -308,9 +310,12 @@ function cityBuilder(array){
         console.log(error);
       })
       };
+
+// end of ajax functions
+
 getMax();
 getRoads();
-getcities();
+getCities();
 removeCity();
 addCity();
 addRoads();
