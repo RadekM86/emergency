@@ -95,36 +95,6 @@ $(function() {
       });
     
     }
-    // function editCity(){
-    //   var editBtn = ul.on('click','.edit',function(){
-    //     var thisbtn = $(this);
-    //     var id = thisbtn.data('id');
-    //     var editTitle = thisbtn.prevAll().attr('contenteditable', true);
-    //     thisbtn.text('Zapisz');
-    
-    
-    //     var newCity = {
-    //       title: $(this).parent().find('h3').text(),
-    //     };
-    //   $.ajax({
-    //   method: "PUT",
-    //   url: url + "/cities/" + id,
-    //   dataType: "json",
-    //   data: newCity
-    //   })
-    //     .done(function(response){
-    //     console.log("hurra");
-    //     console.log(response);
-    
-    //     })
-    //     .fail(function(error){
-    //     console.log('Error');
-    //     console.log(error);
-    //   })
-    
-    // });
-    
-    // };
     
     function getcities(){
     $.ajax({

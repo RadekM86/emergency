@@ -17,39 +17,19 @@
     },
     {
       "id": 4,
-      "name": "Dubrovnik",
+      "name": "Dublin",
       "firestation": "false"
     },
     {
       "id": 5,
-      "name": "Epidauros",
-      "firestation": "true"
-    },
-    {
-      "id": 6,
-      "name": "Firenze",
-      "firestation": "true"
-    },
-    {
-      "id": 7,
-      "name": "Genoa",
-      "firestation": "true"
-    },
-    {
-      "id": 8,
-      "name": "Korcula",
-      "firestation": "false"
-    },
-    {
-      "id": 9,
-      "name": "Heliopolis",
+      "name": "Edynburg",
       "firestation": "true"
     }
   ],
   "roads": [
     {
       "id": 0,
-      "cities": [
+      "name": [
         "A",
         "B"
       ],
@@ -57,7 +37,7 @@
     },
     {
       "id": 1,
-      "cities": [
+      "name": [
         "A",
         "C"
       ],
@@ -65,7 +45,7 @@
     },
     {
       "id": 2,
-      "cities": [
+      "name": [
         "A",
         "D"
       ],
@@ -73,16 +53,14 @@
     },
     {
       "id": 3,
-      "cities": [
+      "name": [
         "A",
         "E"
       ],
       "time": 1
     }
   ],
-  "max_time": [
-    {
-      "time": 10
-    }
-  ]
+  "max_time": {
+    "time": 10
+  }
 }
