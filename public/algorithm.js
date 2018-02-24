@@ -86,7 +86,7 @@ function pathFinder(name){
         for(let i=0; i<object.nodes.length; i++){
             var looking=getCityByName(object.nodes[i].cities);
             console.log(looking.nodes);
-            if(looking.firestation){
+            if(pathFinder(looking.name)){
                 console.log("found it")
                 return true
             }
@@ -95,4 +95,4 @@ function pathFinder(name){
     }
 }
 
-pathFinder("F");
+pathFinder("C");
