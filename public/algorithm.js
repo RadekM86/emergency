@@ -35,13 +35,20 @@ function cityBuilder(array){
 
 var cityMap = cityBuilder(cities);
 
+var firestations = cityMap.filter(el=>el.firestation===true);
 
 function getCityByName(name){
     var result = cityMap.filter(el=>el.name===name)
     return result[0]
 }
 
-
+let relativeDatabase = (cityMap, parent)=>{
+    let node = {}
+    cityMap
+    .filter(el=>el.parent===parent)
+    .forEach(el=>
+    node[c.name] = relativeDatabase(categories, c.name) )
+}
 
 
 var visited = [];
@@ -101,4 +108,25 @@ function pathFinder(name){
 }
 
 // && route.time.reduce((prev,curr)=>{return prev+curr})<=10)
-pathFinder("F");
+
+
+let reversedBFS = (name, goal) =>{
+    var object = getCityByName(name);
+    console.log("I'm in: " + object.name + " looking for " + goal);
+    return true
+}
+
+//lets look from ends to start
+let search = (goal) => {
+    let firestationsNames = firestations.map(el=>el.name);
+    console.log(firestationsNames)
+    if (firestationsNames.indexOf(goal)!==-1){
+        console.log("found it!!!!!")
+        return true
+    }else{
+        firestations.forEach(el=> reversedBFS(el.name, goal))
+        return true
+    }
+}
+
+search("B")
