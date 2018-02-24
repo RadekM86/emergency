@@ -23,7 +23,12 @@
     {
       "id": 5,
       "name": "Edynburg",
-      "firestation": "true"
+      "firestation": "false"
+    },
+    {
+      "id": 6,
+      "name": "Florencja",
+      "firestation": "false"
     }
   ],
   "roads": [

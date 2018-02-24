@@ -39,75 +39,70 @@ function cityBuilder(array){
   return cityMap
 }
 
-
-var cityMap = cityBuilder(cities);
-
-var firestations = cityMap.filter(el=>el.firestation===true);
-
-function getCityByName(name){
-  var result = cityMap.filter(el=>el.name===name)
-  return result[0]
-}
-
-
-var searchTimesArray = [];
-var fastestResponse = [];
-
-let reversedBFS = (name, goal, time) =>{
-  let object = getCityByName(name);
-  console.log("I'm in: " + object.name + " looking for " + goal);
-  console.log(object.nodes)
-  let nodesArray = object.nodes.map(el=>el.name);
-  let timesArray = object.nodes.map(el=>el.time);
-  let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
-  searchTimesArray.push(searchTime);
-  fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
-  console.log(searchTime)
-  console.log(nodesArray.indexOf(goal))
-  if(fastestResponse[0]<max){
-      if (nodesArray.indexOf(goal)>-1){
-          return true
-      }else{
-          object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
-      }
-  }else{
-      return false
-}
-}
-
-
-let search = (goal) => {
-  searchTimesArray = [];
-  let firestationsNames = firestations.map(el=>el.name);
-  console.log(firestationsNames)
-  if (firestationsNames.indexOf(goal)!==-1){
-      searchTimesArray.push(0)
-      return true
-  }else{
-      for (let i = 0; i<firestations.length; i++){
-          if(reversedBFS(firestations[i].name, goal, 0)===true){
-              return true
-          }
-      }return false
-  }
-}
-
-let shortestWay = (name)=>{
-  do{
-      search(name)
-  }
-  while(fastestResponse[0]>max);
-  return search(name)
-}
-
 //  Ajax functions     
     function insertCity(cities){
+      getMax();
+      getRoads();
       var cityMap = cityBuilder(cities);
       var firestations = cityMap.filter(el=>el.firestation===true);
-      console.log(cityMap);
-      console.log(roads)
+      function getCityByName(name){
+        var result = cityMap.filter(el=>el.name===name)
+        return result[0]
+      }
+      var searchTimesArray = [];
+      var fastestResponse = [];
+
+      let reversedBFS = (name, goal, time) =>{
+        let object = getCityByName(name);
+        console.log("I'm in: " + object.name + " looking for " + goal);
+        let nodesArray = object.nodes.map(el=>el.name);
+        let timesArray = object.nodes.map(el=>el.time);
+        let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
+        searchTimesArray.push(searchTime);
+        fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
+        if(fastestResponse[0]<max){
+            if (nodesArray.indexOf(goal)>-1){
+                return true
+            }else{
+                object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
+            }
+        }else{
+            return false
+        }
+      }
+
+
+      let search = (goal) => {
+        searchTimesArray = [];
+        let firestationsNames = firestations.map(el=>el.name);
+        if (firestationsNames.indexOf(goal)!==-1){
+            searchTimesArray.push(0)
+            return true
+        }else{
+            for (let i = 0; i<firestationsNames.length; i++){
+                if(reversedBFS(firestationsNames[i], goal, 0)===true){
+                  
+                    return true
+                }
+            }return false
+        }
+      }
+
+      let shortestWay = (name, firestations)=>{
+        do{
+            search(name, firestations)
+        }
+        while(fastestResponse[0]>max);
+        return search(name, firestations)
+      }
+
+      var firestations = cityMap.filter(el=>el.firestation==="true");
             cities.forEach(function(cities){
-              console.log(cities);
+              console.log("stations")
+              console.log(firestations);
+              // console.log(shortestWay(cities.name));
+              console.log(search(cities.name, firestations))
+              console.log('debug')
               var li = $('<li>')
               var title = $('<h3>').text(cities.name);
               var newFireStation = $('<p>').text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":"")
@@ -117,11 +112,12 @@ let shortestWay = (name)=>{
               li.append(title);
               li.append(newFireStation)
               li.append(deleteBtn);
-              if(shortestWay(cities.name)===true){
-                li.addClass('inRange')
-              }else{
-                li.addClass('outOfRange')
-              }
+
+              // if(shortestWay(cities.name)===true){
+              //   li.addClass('inRange')
+              // }else{
+              //   li.addClass('outOfRange')
+              // }
               // li.append(editBtn);
               ul.append(li);
 
@@ -137,7 +133,6 @@ let shortestWay = (name)=>{
           $('.placeholder').html('')
           var inputName = $('.get_name').val();
           var inputCheck = $('.check').is(':checked')
-    
           var newCity = {
             id: this.id,
             name: inputName,
@@ -151,6 +146,7 @@ let shortestWay = (name)=>{
             })
             .done(function(response){
               console.log(response);
+              getRoads();
               var li = $('<li>')
               var newTitle = $('<h3>').text(response.name);
               var newFireStation = $('<p>').text(response.firestation==="true"?"posiada jednostkę straży pożarnej":"")
@@ -162,11 +158,6 @@ let shortestWay = (name)=>{
               li.append(newFireStation)
               li.append(deleteBtn);
               response.firestation==="true" && li.addClass('firestation');
-              if(shortestWay(response.name)===true){
-                li.addClass('inRange')
-              }else{
-                li.addClass('outOfRange')
-              }
               $('.get_name').val('')
               // li.append(editBtn);
               ul.append(li);
