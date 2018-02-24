@@ -11,13 +11,7 @@ function Nodes(cities, time){
     this.time = time
 }
 
-function Route(cities, time){
-    this.name = cities;
-    this.time = time
-}
-
-var arr = [];
-
+var max = 10;
 var cities = [{name: "A", firestation: false}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}, {name: "F", firestation: false}, {name: "G", firestation: true}, {name: "W", firestation: false}];
 var roads = [{name: ["A", "B"], time: 4}, {name: ["B", "C"], time: 10}, {name: ["A", "C"], time: 8}, {name: ["D", "E"], time: 3}, {name: ["F", "A"], time: 5},{name:["F", "C"], time:5},{name: ["C", "G"], time: 1},{name: ["D", "B"], time: 7}, {name: ["A", "W"], time: 12}];
 
@@ -44,8 +38,6 @@ function getCityByName(name){
 }
 
 
-//lets look from ends to start
-
 var searchTimesArray = [];
 var fastestResponse = [];
 
@@ -60,7 +52,7 @@ let reversedBFS = (name, goal, time) =>{
     fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
     console.log(searchTime)
     console.log(nodesArray.indexOf(goal))
-    if(fastestResponse[0]<10){
+    if(fastestResponse[0]<max){
         if (nodesArray.indexOf(goal)>-1){
             return true
         }else{
@@ -92,7 +84,7 @@ let shortestWay = (name)=>{
     do{
         search(name)
     }
-    while(fastestResponse[0]>10);
+    while(fastestResponse[0]>max);
     return search(name)
 }
 
