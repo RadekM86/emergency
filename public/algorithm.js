@@ -64,9 +64,10 @@ let reversedBFS = (name, goal, time) =>{
             return true
         }else{
             object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
-            return false
         }
-    }return false
+    }else{
+        return false
+}
 }
 
 
@@ -81,9 +82,8 @@ let search = (goal) => {
         for (let i = 0; i<firestations.length; i++){
             if(reversedBFS(firestations[i].name, goal, 0)===true){
                 return true
-            }return false
-        }
-
+            }
+        }return false
     }
 }
 
@@ -95,4 +95,4 @@ let shortestWay = (name)=>{
     return true
 }
 
-shortestWay("A")
+shortestWay("W");
