@@ -27,6 +27,7 @@ function nodefinder(name){
     arr.map(el=>newArr.push(new Nodes(el.name.filter(elem=>elem!==name), el.time)))
     return newArr
 }
+
 function cityBuilder(array){
     var cityMap = array.map(el=>new City(el.name, el.firestation, nodefinder(el.name)))
     return cityMap
@@ -92,7 +93,7 @@ let shortestWay = (name)=>{
         search(name)
     }
     while(fastestResponse[0]>10);
-    return true
+    return search(name)
 }
 
-shortestWay("W");
+shortestWay("A");
