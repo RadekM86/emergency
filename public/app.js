@@ -102,8 +102,12 @@ function cityBuilder(array){
               console.log(firestations);
               // console.log(shortestWay(cities.name));
               console.log(search(cities.name, firestations))
-              console.log('debug')
               var li = $('<li>')
+              if(shortestWay(cities.name)===true){
+                li.addClass('inRange')
+              }else{
+                li.addClass('outOfRange')
+              }
               var title = $('<h3>').text(cities.name);
               var newFireStation = $('<p>').text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":"")
               var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
@@ -113,11 +117,7 @@ function cityBuilder(array){
               li.append(newFireStation)
               li.append(deleteBtn);
 
-              // if(shortestWay(cities.name)===true){
-              //   li.addClass('inRange')
-              // }else{
-              //   li.addClass('outOfRange')
-              // }
+
               // li.append(editBtn);
               ul.append(li);
 
@@ -146,14 +146,11 @@ function cityBuilder(array){
             })
             .done(function(response){
               console.log(response);
-              getRoads();
               var li = $('<li>')
               var newTitle = $('<h3>').text(response.name);
               var newFireStation = $('<p>').text(response.firestation==="true"?"posiada jednostkę straży pożarnej":"")
               var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
               deleteBtn.data('id', response.id);
-              // var editBtn = $("<button>").text("Edytuj").addClass('edit');
-              // editBtn.data('id', response.id);
               li.append(newTitle);
               li.append(newFireStation)
               li.append(deleteBtn);
@@ -246,7 +243,6 @@ function cityBuilder(array){
       })
       };
 getMax();
-console.log(max)
 getRoads();
 getcities();
 removeCity();

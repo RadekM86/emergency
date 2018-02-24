@@ -68,10 +68,10 @@ body{
   font-size: 0.7em;
 }
 .inRange{
-  background-color: green;
+  border-bottom: 1px solid green !important
 }
 .outOfRange{
-  background-color: red;
+  border-bottom: 3px solid red !important
 }
 label {
   display: block;

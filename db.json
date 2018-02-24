@@ -27,7 +27,7 @@
     },
     {
       "id": 6,
-      "name": "Florencja",
+      "name": "firence",
       "firestation": "false"
     }
   ],
@@ -43,7 +43,7 @@
     {
       "id": 1,
       "name": [
-        "Alhambra",
+        "Barcelona",
         "Cadiz"
       ],
       "time": 3
