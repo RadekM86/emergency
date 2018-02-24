@@ -111,9 +111,15 @@ function pathFinder(name){
 
 
 let reversedBFS = (name, goal) =>{
-    var object = getCityByName(name);
+    let object = getCityByName(name);
     console.log("I'm in: " + object.name + " looking for " + goal);
-    return true
+    let nodesArray = object.nodes.map(el=>el.cities)
+    console.log("nodes array " + nodesArray);
+    if (nodesArray.indexOf(goal)!==-1){
+        console.log("found " + goal)
+        return true
+    }
+    return false
 }
 
 //lets look from ends to start
@@ -129,4 +135,4 @@ let search = (goal) => {
     }
 }
 
-search("B")
+search("A")
