@@ -20,10 +20,9 @@ function Nodes(cities, time){
   this.time = time
 }
 
-var max = 10;
-// var cities = [{name: "A", firestation: false}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}, {name: "F", firestation: false}, {name: "G", firestation: true}, {name: "W", firestation: false}];
-// var roads = [{name: ["A", "B"], time: 4}, {name: ["B", "C"], time: 10}, {name: ["A", "C"], time: 8}, {name: ["D", "E"], time: 3}, {name: ["F", "A"], time: 5},{name:["F", "C"], time:5},{name: ["C", "G"], time: 1},{name: ["D", "B"], time: 7}, {name: ["A", "W"], time: 12}];
+//variables for the algorithm
 
+var max = 10;
 var cities = [];
 var roads = [];
 
@@ -97,7 +96,7 @@ function cityBuilder(array){
       }
 
       var firestations = cityMap.filter(el=>el.firestation==="true");
-            cities.forEach(function(cities){
+      cities.forEach(function(cities){
               console.log("stations")
               console.log(firestations);
               // console.log(shortestWay(cities.name));
@@ -109,12 +108,14 @@ function cityBuilder(array){
                 li.addClass('outOfRange')
               }
               var title = $('<h3>').text(cities.name);
-              var newFireStation = $('<p>').text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":"")
+              var info = $('<p>')
+              var infoplaceholder= (shortestWay(cities.name)===true)?"miasto w zasięgu straży pożarnej":"miasto poza zasięgiem straży pożarnej"
+              info.text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":infoplaceholder);
               var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
               deleteBtn.data('id', cities.id);
               cities.firestation==="true" && li.addClass('firestation')
               li.append(title);
-              li.append(newFireStation)
+              li.append(info)
               li.append(deleteBtn);
 
 
@@ -170,6 +171,17 @@ function cityBuilder(array){
     
     });
     
+    }
+    
+    
+    function addRoads(roads){
+      var url = "http://localhost:3000";
+      var option = $('<option>').text("asdasda")
+      var selected = $(".roads").html(option)
+      var button = $('.add_Road').submit(function(e){
+
+    });
+      form.append(selected)
     }
     
     function removeCity(){
@@ -247,6 +259,7 @@ getRoads();
 getcities();
 removeCity();
 addCity();
+addRoads();
 
   // end of code
 });

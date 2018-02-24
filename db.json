@@ -16,18 +16,8 @@
       "firestation": "false"
     },
     {
-      "id": 4,
-      "name": "Dublin",
-      "firestation": "false"
-    },
-    {
       "id": 5,
-      "name": "Edynburg",
-      "firestation": "false"
-    },
-    {
-      "id": 6,
-      "name": "firence",
+      "name": "Bogota",
       "firestation": "false"
     }
   ],
@@ -61,6 +51,14 @@
       "name": [
         "Alhambra",
         "Edynburg"
+      ],
+      "time": 1
+    },
+    {
+      "id": 4,
+      "name": [
+        "Barcelona",
+        "Bogota"
       ],
       "time": 1
     }

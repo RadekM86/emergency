@@ -34,7 +34,6 @@ body{
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  overflow: hidden;
   transition: all 0.5s ease;
   animation: slideDown 0.5s forwards;
   perspective: 100px;
@@ -60,18 +59,26 @@ body{
   border: 1px solid black;
 }
 
+.inRange{
+  border-left: 4px solid green !important
+}
+.inRange p{
+  color: green;
+  font-size: .7em
+}
+.outOfRange{
+  border-left: 4px solid red !important
+}
+.outOfRange p{
+  color: red;
+  font-size: .7em
+}
 .firestation{
   border-left: 4px solid var(--ultramarine) !important
 }
 .firestation p {
   color: var(--ultramarine);
   font-size: 0.7em;
-}
-.inRange{
-  border-bottom: 1px solid green !important
-}
-.outOfRange{
-  border-bottom: 3px solid red !important
 }
 label {
   display: block;
