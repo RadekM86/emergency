@@ -134,12 +134,36 @@ function cityBuilder(array){
           e.preventDefault();
           $('.placeholder').html('')
           var inputName = $('.get_name').val();
-          var inputCheck = $('.check').is(':checked')
+          var inputCheck = $('.check').is(':checked');
+          var inputRoad = $('.road').val();
+          var inputTime = $('.time').val();
+          var inputArray=[inputName, inputRoad];
           var newCity = {
             id: this.id,
             name: inputName,
             firestation: inputCheck
           };
+          var newRoad = {
+            id: this.id,
+            time: inputTime,
+            name: inputArray
+          }
+          fetch(url+"/roads", {
+            method: 'post',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "time": inputTime,
+                "name": [
+                  inputName,
+                  inputRoad
+                ]
+              }
+            )
+          }).then(res=>res.json())
+            .then(res => console.log(res));
           $.ajax({
               method: "POST",
               url: url + "/cities",
@@ -165,6 +189,7 @@ function cityBuilder(array){
             console.log('Error');
             console.log(error);
           })
+        
       }else{
             e.preventDefault();
             var placeholder = $(".placeholder").html("<h3>Nazwa miasta powinna zawierać conajmniej jeden znak</h3>").addClass('placeholder')

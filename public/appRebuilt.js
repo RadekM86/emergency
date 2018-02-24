@@ -103,7 +103,7 @@ let shortestWay = (name)=>{
     while(fastestResponse[0]>max);
     return search(name)
 }
-        $.ajax({
+    $.ajax({
         method: "GET",
         url: url + "/max",
         dataType: "json"
