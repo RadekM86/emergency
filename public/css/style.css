@@ -67,7 +67,12 @@ body{
   color: var(--ultramarine);
   font-size: 0.7em;
 }
-
+.inRange{
+  background-color: green;
+}
+.outOfRange{
+  background-color: red;
+}
 label {
   display: block;
   margin-top: 10px;

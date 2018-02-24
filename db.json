@@ -30,37 +30,37 @@
     {
       "id": 0,
       "name": [
-        "A",
-        "B"
+        "Alhambra",
+        "Barcelona"
       ],
       "time": 2
     },
     {
       "id": 1,
       "name": [
-        "A",
-        "C"
+        "Alhambra",
+        "Cadiz"
       ],
       "time": 3
     },
     {
       "id": 2,
       "name": [
-        "A",
-        "D"
+        "Alhambra",
+        "Dublin"
       ],
       "time": 4
     },
     {
       "id": 3,
       "name": [
-        "A",
-        "E"
+        "Alhambra",
+        "Edynburg"
       ],
       "time": 1
     }
   ],
-  "max_time": {
+  "max": {
     "time": 10
   }
 }
