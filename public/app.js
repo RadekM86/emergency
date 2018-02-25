@@ -2,7 +2,6 @@ $(function() {
     
 // variables for DOM
         var ul = $(".list");
-    
         var url = "http://localhost:3000";
     
 //Algorithm functions
@@ -59,6 +58,9 @@ function cityBuilder(array){
         let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
         searchTimesArray.push(searchTime);
         fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
+        console.log("...........")
+        console.log(searchTimesArray);
+        console.log(fastestResponse)
         if(fastestResponse[0]<max){
             if (nodesArray.indexOf(goal)>-1){
                 return true
@@ -143,11 +145,6 @@ function cityBuilder(array){
             name: inputName,
             firestation: inputCheck
           };
-          var newRoad = {
-            id: this.id,
-            time: inputTime,
-            name: inputArray
-          }
           fetch(url+"/roads", {
             method: 'post',
             headers: {
@@ -155,7 +152,7 @@ function cityBuilder(array){
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "time": inputTime,
+                "time": parseInt(inputTime,10),
                 "name": [
                   inputName,
                   inputRoad
@@ -164,6 +161,7 @@ function cityBuilder(array){
             )
           }).then(res=>res.json())
             .then(res => console.log(res));
+            
           $.ajax({
               method: "POST",
               url: url + "/cities",
@@ -200,70 +198,6 @@ function cityBuilder(array){
     }
     
     
-    function addRoads(roads){
-      var url = "http://localhost:3000";
-      var form = $(".add_City")
-      $.ajax({
-      method: "GET",
-      url: url + "/cities",
-      dataType: "json"
-      })
-        .done(function(response){
-          function populate(selector) {
-            response.forEach(el => {
-              $(selector)
-              .append(`<option value=${el.name}>${el.name}</option>`)
-            })
-          }
-          
-          populate('.add_City .roads');
-        })
-        .fail(function(error){
-        console.log('Error');
-        console.log(error);
-      })
-      var form = $('.add_City').submit(function(e){
-        if($('option').val().length>0){
-          e.preventDefault();
-          $('.placeholder').html('')
-          var inputName = $('.get_name').val();
-          var inputCheck = $('.check').is(':checked')
-          var newCity = {
-            id: this.id,
-            name: inputName,
-            firestation: inputCheck
-          };
-          $.ajax({
-              method: "POST",
-              url: url + "/roads",
-              dataType: "json",
-              data: newRoad
-            })
-            .done(function(response){
-              console.log(response);
-              var li = $('<li>')
-              var newTitle = $('<h3>').text(response.name);
-              var newFireStation = $('<p>').text(response.firestation==="true"?"posiada jednostkę straży pożarnej":"")
-              var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
-              deleteBtn.data('id', response.id);
-              li.append(newTitle);
-              li.append(newFireStation)
-              li.append(deleteBtn);
-              response.firestation==="true" && li.addClass('firestation');
-              $('.get_name').val('')
-              // li.append(editBtn);
-              ul.append(li);
-            })
-            .fail(function(error){
-            console.log('Error');
-            console.log(error);
-          })
-      }else{
-            e.preventDefault();
-            var placeholder = $(".placeholder").html("<h3>Nazwa miasta powinna zawierać conajmniej jeden znak</h3>").addClass('placeholder')
-      }
-    })}
-    
     function removeCity(){
       var deleteBtn = ul.on('click','.delete',function(){
         var thisbtn = $(this);
@@ -274,7 +208,6 @@ function cityBuilder(array){
             dataType: "json",
           })
           .done(function(response){
-            console.log(response);
           })
           .fail(function(error){
             console.log('Error');
@@ -311,7 +244,6 @@ function cityBuilder(array){
     dataType: "json"
     })
       .done(function(response){
-      getRoads();
       insertCity(response);
         
     
@@ -345,7 +277,6 @@ getRoads();
 getCities();
 removeCity();
 addCity();
-addRoads();
 
   // end of code
 });
