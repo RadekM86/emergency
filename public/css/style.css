@@ -124,7 +124,20 @@ button {
 
 /* media queries */
 
-@media (max-width: 600px) {
+@media (max-width: 655px) {
+
+  .delete{
+    background-color: #FFF;
+    min-height: 40px;
+    color: #555;
+    padding: 2px;
+    margin: 0 10px;
+    font-size: 0.9em;
+    font-weight: 400;
+  }
+
+}
+@media (max-width: 450px) {
   .list>li {
     flex-direction: column
   }
