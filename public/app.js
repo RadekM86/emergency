@@ -50,7 +50,7 @@ function cityBuilder(array){
       var searchTimesArray = [];
       var fastestResponse = [];
 
-      let reversedBFS = (name, goal, time, falseTest) =>{
+      let reversedBFS3 = (name, goal, time) =>{
         console.log(falseTest);
         if(falseTest.length ===0){
           let object = getCityByName(name);
@@ -66,23 +66,65 @@ function cityBuilder(array){
               if (nodesArray.indexOf(goal)>-1){
               return true
               }else{
-              object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
+              object.nodes.forEach(el=> reversedBFS2(el.name, goal, el.time, falseTest))
               }
           }
         } 
         return false
       }
 
+      let reversedBFS2 = (goal, firestations, time) =>{
+        if(time<10){
+          let object = getCityByName(goal);
+          for(let i = 0; i<firestations.length;i++){
+            console.log(`I'm in ${firestations[i]} looking for ${goal}`);
+            let nodesArray = object.nodes.map(el=>el.name);
+            let timesArray = object.nodes.map(el=>el.time);
+            let searchTime = timesArray[nodesArray.indexOf(goal)] + time;
+            console.log(`search time: ${searchTime}`)
+            searchTimesArray.push(searchTime);
+            fastestResponse = searchTimesArray.sort(function(a,b){return a-b})
+            if(fastestResponse[0]>max){
+              return false
+            }else if(nodesArray.indexOf(goal)!==-1){
+              return true
+            }else{
+              object.nodes.forEach(el=> reversedBFS2(el.name, goal, el.time))
+            }
+          }
+        }else{
+          return false
+        }
+       }
+      
+      let reversedBFS = (goal, firestations, time)=>{
+        firestations.forEach(el=>{
+          let object = getCityByName(el.name);
+          let nodesArray = object.nodes.map(node=>node.name);
+          let timesArray = object.nodes.map(node=>node.time);
+          
+        })
+      }
+
+
+      let shortestWay = (name, firestations)=>{
+        if(reversedBFS(name, firestations,0)===false){
+          return false
+        }else{
+          return true
+        }
+      }
 
       let search = (goal) => {
         searchTimesArray = [];
+        var falseTest = [];
         let firestationsNames = firestations.map(el=>el.name);
         if (firestationsNames.indexOf(goal)!==-1){
             searchTimesArray.push(0)
             return true
         }else{
             for (let i = 0; i<firestationsNames.length; i++){
-                if(reversedBFS(firestationsNames[i], goal, 0, falseTest)===true){
+                if(reversedBFS2(firestationsNames[i], goal, 0, falseTest)===true){
                 }else
                 { 
                   falseTest.push(false) 
@@ -92,10 +134,10 @@ function cityBuilder(array){
         return false
       }
 
-      let shortestWay = (name, firestations)=>{
+      let shortestWay2 = (name, firestations)=>{
         do{
-          var falseTest = [];
-            search(name, firestations, falseTest)
+
+            search(name, firestations)
          }
         while(fastestResponse[0]>max && search(name, firestations)===true);
         return search(name, firestations)
@@ -104,8 +146,8 @@ function cityBuilder(array){
       var firestations = cityMap.filter(el=>el.firestation==="true");
       cities.forEach(function(cities){
  
-               var li = $('<li>')
-              if(shortestWay(cities.name)===true){
+              var li = $('<li>')
+              if(shortestWay(cities.name, firestations)===true){
                 li.addClass('inRange')
               }else{
                 li.addClass('outOfRange')
