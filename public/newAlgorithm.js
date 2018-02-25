@@ -13,7 +13,7 @@ function Nodes(cities, time){
 
 var max = 10;
 var cities = [{name: "A", firestation: false}, {name: "B", firestation: true}, {name: "C", firestation: false}, {name: "D", firestation: false}, {name: "E", firestation: false}, {name: "F", firestation: false}, {name: "G", firestation: true}, {name: "W", firestation: false}];
-var roads = [{name: ["A", "B"], time: 4}, {name: ["B", "C"], time: 10}, {name: ["A", "C"], time: 8}, {name: ["D", "E"], time: 3}, {name: ["F", "A"], time: 5},{name:["F", "C"], time:5},{name: ["C", "G"], time: 1},{name: ["D", "B"], time: 7}, {name: ["A", "W"], time: 12}];
+var roads = [{name: ["A", "B"], time: 4}, {name: ["B", "C"], time: 1}, {name: ["A", "C"], time: 8}, {name: ["D", "E"], time: 3}, {name: ["F", "A"], time: 5},{name:["F", "C"], time:5},{name: ["C", "G"], time: 1},{name: ["D", "B"], time: 7}, {name: ["A", "W"], time: 12}];
 
 function nodefinder(name){
     let newArr =[];
@@ -43,15 +43,15 @@ function getCityByName(name){
 
 
 let dijkstra = (current, firestations, time, unvisited) =>{
-    console.log(firestations)
-    let search = unvisited.filter(el=>el.name!==current);
-    console.log(cityMap);
-    console.log(search);
     let currentObject = getCityByName(current);
+    unvisited = unvisited.filter(el=>el.name!==current)
+    console.log(unvisited);
+    console.log(currentObject)
     if(currentObject.firestation===true){
         console.log("found");
         return true
     }else{
+        if(time<max){
         let nodes = currentObject.nodes.map(el=>getCityByName(el.name))
         let times = currentObject.nodes.map(el=> el.time)
         console.log('looking further')
@@ -68,15 +68,31 @@ let dijkstra = (current, firestations, time, unvisited) =>{
         if(firestationsInRange.length>0){
             console.log('found it in range')
             return true
+        }else{
+            console.log(unvisited);
+            let foundRoutesArray = []
+            currentObject.nodes.forEach(el=>{
+                if(dijkstra(el.name, firestations, el.time+time, unvisited)===true){
+                    foundRoutesArray.push(true)
+                }else{
+                    return false
+                }
+            })
+            if(foundRoutesArray.length>0){
+                console.log("found it anyway")
+                return true
+            }
+            return false
         }
-
+    }else{
         return false
+    }
     }
 }
 
 
 
-if(dijkstra("A", firestations, 0, cityMap)===true){
+if(dijkstra("W", firestations, 0, cityMap)===true){
     console.log('it returns true')
 }else[
     console.log('it returns false')
