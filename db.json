@@ -9,6 +9,11 @@
       "id": 2,
       "name": "Barcelona",
       "firestation": "true"
+    },
+    {
+      "id": 3,
+      "name": "Cadiz",
+      "firestation": "false"
     }
   ],
   "roads": [
@@ -19,6 +24,14 @@
         "Barcelona"
       ],
       "time": 2
+    },
+    {
+      "time": 12,
+      "name": [
+        "Cadiz",
+        "Barcelona"
+      ],
+      "id": 1
     }
   ],
   "max": {

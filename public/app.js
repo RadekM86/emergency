@@ -50,42 +50,44 @@ function cityBuilder(array){
       var searchTimesArray = [];
       var fastestResponse = [];
 
-      let reversedBFS = (name, goal, time) =>{
-        let object = getCityByName(name);
-        console.log("I'm in: " + object.name + " looking for " + goal);
-        let nodesArray = object.nodes.map(el=>el.name);
-        let timesArray = object.nodes.map(el=>el.time);
-        let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
-        searchTimesArray.push(searchTime);
-        fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
-        console.log("...........")
-        console.log(searchTimesArray);
-        console.log(fastestResponse)
-        if(fastestResponse[0]<max){
-            if (nodesArray.indexOf(goal)>-1){
-                return true
-            }else{
-                object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
-            }
-        }else{
-            return false
-        }
+      let reversedBFS = (name, goal, time, falseTest) =>{
+        console.log(falseTest);
+        if(falseTest.length ===0){
+          let object = getCityByName(name);
+          console.log("I'm in: " + object.name + " looking for " + goal);
+          let nodesArray = object.nodes.map(el=>el.name);
+          let timesArray = object.nodes.map(el=>el.time);
+          let searchTime = timesArray[nodesArray.indexOf(goal)]+time;
+          searchTimesArray.push(searchTime);
+          fastestResponse = searchTimesArray.sort(function(a, b){return a-b})
+          if(fastestResponse[0]>max){
+             return false
+          }else{
+              if (nodesArray.indexOf(goal)>-1){
+              return true
+              }else{
+              object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
+              }
+          }
+        } return false
       }
 
 
       let search = (goal) => {
         searchTimesArray = [];
+        var falseTest = [];
         let firestationsNames = firestations.map(el=>el.name);
         if (firestationsNames.indexOf(goal)!==-1){
             searchTimesArray.push(0)
             return true
         }else{
             for (let i = 0; i<firestationsNames.length; i++){
-                if(reversedBFS(firestationsNames[i], goal, 0)===true){
-                  
-                    return true
-                }
-            }return false
+                if(reversedBFS(firestationsNames[i], goal, 0, falseTest)===true){
+                }else
+                { 
+                  falseTest.push(false) 
+                  return false}
+            }
         }
       }
 
@@ -93,7 +95,7 @@ function cityBuilder(array){
         do{
             search(name, firestations)
         }
-        while(fastestResponse[0]>max);
+        while(fastestResponse[0]>max || search(name, firestations)===false);
         return search(name, firestations)
       }
 
