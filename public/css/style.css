@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  border: 1px solid green
 }
 body{
   background-color: #F5F5F5;
@@ -31,19 +32,23 @@ body{
   padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: center;
   align-items: center;
   transition: all 0.5s ease;
   animation: slideDown 0.5s forwards;
   perspective: 100px;
+  flex-wrap: wrap;
 }
 
+.list .info{
+  width: 20%;
+}
 
 .list h3 {
   margin: 5px;
   font-weight: 400;
-  flex-grow: 1;
+  width: 20%;
 }
 .delete{
   background-color: #FFF;
@@ -52,6 +57,11 @@ body{
   margin: 0 10px;
   font-size: 0.7em;
   font-weight: 400;
+}
+
+.roadList{
+  display: flex;
+  flex-direction: column;
 }
 
 .editable {

@@ -75,6 +75,7 @@ function cityBuilder(array){
                 console.log('found it in range')
                 return true
             }else{
+                console.log("unvisited")
                 console.log(unvisited);
                 nodes.forEach(el=>{
                     foundRoutesArray = [];
@@ -104,16 +105,26 @@ function cityBuilder(array){
               }else{
                 li.addClass('outOfRange')
               }
+              let newObject = getCityByName(cities.name);
               var title = $('<h3>').text(cities.name);
-              var icon = $('<i class="fa fa-building"></i>')
-              var info = $('<p>')
+              var icon = $('<i class="fa fa-building"></i>');
+              var info = $('<p class="info">')
               var infoplaceholder= (dijkstra(cities.name, firestations, 0, cityMap)===true)?"miasto w zasięgu straży pożarnej":"miasto poza zasięgiem straży pożarnej"
               info.text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":infoplaceholder);
-              var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
+              var deleteBtn = $("<button class='deleteBtn'>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
+              var roadsList = $('<ul class="roadList"><span>Drogi:  &nbsp</span><i class="fa fa-road"></i>')
+              var newLi=[];              
+              for(let i=0; i<newObject.nodes.length;i++){
+                newLi.push(
+                  $(`<li class="roads">${newObject.nodes[i].name}  &nbsp <i class="fa fa-arrow-circle-right"</i> &nbsp ${newObject.nodes[i].time} minuty </li>`)
+                )
+              }
+              roadsList.append(newLi);
               deleteBtn.data('id', cities.id);
               cities.firestation==="true" && li.addClass('firestation');
               li.append(icon)
               li.append(title);
+              li.append(roadsList);
               li.append(info)
               li.append(deleteBtn);
 

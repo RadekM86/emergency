@@ -80,7 +80,7 @@ let search = (goal) => {
     }
 }
 
-let shortestWay = (name)=>{
+let dijkstra = (name)=>{
     do{
         search(name)
     }
@@ -88,4 +88,4 @@ let shortestWay = (name)=>{
     return search(name)
 }
 
-shortestWay("A");
+dijkstra("A");
