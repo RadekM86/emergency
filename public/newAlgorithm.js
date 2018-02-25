@@ -42,24 +42,41 @@ function getCityByName(name){
 
 
 
-let dijkstra = (name, current, firestations, time, unvisited) =>{
+let dijkstra = (current, firestations, time, unvisited) =>{
     console.log(firestations)
     let search = unvisited.filter(el=>el.name!==current);
     console.log(cityMap);
     console.log(search);
-    let object = getCityByName(name);
-    if(object.firestation===true){
+    let currentObject = getCityByName(current);
+    if(currentObject.firestation===true){
         console.log("found");
         return true
     }else{
-        console.log('not found');
+        let nodes = currentObject.nodes.map(el=>getCityByName(el.name))
+        let times = currentObject.nodes.map(el=> el.time)
+        console.log('looking further')
+        for(let i = 0; i<nodes.length;i++){
+            if(times[i]>max){
+              nodes.splice(i,1);
+              times.splice(i,1)
+            }
+        }
+        let firestationsInRange = nodes.filter(el=>el.firestation===true);
+        console.log(nodes)
+        console.log(firestationsInRange)
+        console.log(times)
+        if(firestationsInRange.length>0){
+            console.log('found it in range')
+            return true
+        }
+
         return false
     }
 }
 
 
 
-if(dijkstra("G", "G", firestations, 0, cityMap)===true){
+if(dijkstra("A", firestations, 0, cityMap)===true){
     console.log('it returns true')
 }else[
     console.log('it returns false')
