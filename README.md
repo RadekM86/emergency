@@ -1,4 +1,6 @@
-# Straż Pożarna UI  [![](https://travis-ci.org/typicode/json-server.svg?branch=master)](https://travis-ci.org/typicode/json-server) 
+# Straż Pożarna UI :fire_engine: 
+[![](https://github.com/typicode/json-server](https://github.com/typicode/json-server) 
+
 
 Aplikacja one-page sprawdzająca połączenia między miastami z jednostkami straży pożarnej i bez
 
@@ -67,14 +69,14 @@ Do budowy i dołączana komponentów do drzewa DOM posłużyły selektory jquery
 
 Składniki aplikacji pobierają, wysyłają i usuwają dane w pliku db.json za pomocą funkcji jquery $ajax (GET, POST, DELETE), poza jednym przypadkiem, opisanym poniżej.
 
-### Błędy
+*** Błędy ***
 
 W czasie wysyłania polecenia w postaci obiektu z tablicą jako parametr do serwera za pomocją $ajax POST, pojawiły się błędy w nazwie i parametrze, które uniemożliwiły prawidłowe pobranie danych z powrotem.
 W tym przypadku $ajax został zastąpiony przez fetch() z parsowaniem do formatu JSON.
 
 ###Składniki aplikacji
 
-*[czcionka z google fonts](https://fonts.google.com/specimen/Roboto)
-*[ikony z Font Awesome](https://fontawesome.com/)
+> [czcionka z google fonts](https://fonts.google.com/specimen/Roboto)
+> [ikony z Font Awesome](https://fontawesome.com/)
 
 
