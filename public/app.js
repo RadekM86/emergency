@@ -116,7 +116,7 @@ function cityBuilder(array){
               var newLi=[];              
               for(let i=0; i<newObject.nodes.length;i++){
                 newLi.push(
-                  $(`<li class="roads">${newObject.nodes[i].name}  &nbsp <i class="fa fa-arrow-circle-right"</i> &nbsp ${newObject.nodes[i].time} minuty </li>`)
+                  $(`<li class="roads">${newObject.nodes[i].name}  &nbsp <i class="fa fa-arrow-circle-right"</i> &nbsp ${newObject.nodes[i].time} minuty </li><hr>`)
                 )
               }
               roadsList.append(newLi);
