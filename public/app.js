@@ -98,12 +98,24 @@ function cityBuilder(array){
        }
       
       let reversedBFS = (goal, firestations, time)=>{
-        firestations.forEach(el=>{
-          let object = getCityByName(el.name);
-          let nodesArray = object.nodes.map(node=>node.name);
-          let timesArray = object.nodes.map(node=>node.time);
-          
-        })
+        if(time>max){
+          return false
+        }else{
+          firestations.forEach(el=>{
+            let object = getCityByName(el.name);
+            console.log(`I'm in ${el.name} looking for ${goal}`)
+            let goalSearch = object.nodes.filter(el=>{el.name===goal && (el.time + time <=10)});
+            if (goalSearch.length!==0){
+              return true
+            }else{
+              let deeperSearch = object.nodes.filter(el=>el.time<10);
+              deeperSearch.forEach(el=>{
+                let objectDeeper = getCityByName(el.name)
+                reversedBFS(goal, objectDeeper.name, objectDeeper.time+time)
+              })
+            }
+          })
+        }
       }
 
 
