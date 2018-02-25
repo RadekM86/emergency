@@ -69,13 +69,13 @@ function cityBuilder(array){
               object.nodes.forEach(el=> reversedBFS(el.name, goal, el.time))
               }
           }
-        } return false
+        } 
+        return false
       }
 
 
       let search = (goal) => {
         searchTimesArray = [];
-        var falseTest = [];
         let firestationsNames = firestations.map(el=>el.name);
         if (firestationsNames.indexOf(goal)!==-1){
             searchTimesArray.push(0)
@@ -89,22 +89,22 @@ function cityBuilder(array){
                   return false}
             }
         }
+        return false
       }
 
       let shortestWay = (name, firestations)=>{
         do{
-            search(name, firestations)
-        }
-        while(fastestResponse[0]>max || search(name, firestations)===false);
+          var falseTest = [];
+            search(name, firestations, falseTest)
+         }
+        while(fastestResponse[0]>max && search(name, firestations)===true);
         return search(name, firestations)
       }
 
       var firestations = cityMap.filter(el=>el.firestation==="true");
       cities.forEach(function(cities){
-              console.log(firestations);
-              // console.log(shortestWay(cities.name));
-              console.log(search(cities.name, firestations))
-              var li = $('<li>')
+ 
+               var li = $('<li>')
               if(shortestWay(cities.name)===true){
                 li.addClass('inRange')
               }else{
