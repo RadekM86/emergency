@@ -37,7 +37,7 @@ function cityBuilder(array){
   return cityMap
 }
 
-//  Ajax functions     
+//  API functions     
     function insertCity(cities){
       getMax();
       getRoads();
@@ -177,18 +177,21 @@ function cityBuilder(array){
             })
             .done(function(response){
               console.log(response);
-              var li = $('<li>')
-              var newTitle = $('<h3>').text(response.name);
-              var newFireStation = $('<p>').text(response.firestation==="true"?"posiada jednostkę straży pożarnej":"")
-              var deleteBtn = $("<button>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
-              deleteBtn.data('id', response.id);
-              li.append(newTitle);
-              li.append(newFireStation)
-              li.append(deleteBtn);
-              response.firestation==="true" && li.addClass('firestation');
-              $('.get_name').val('')
-              // li.append(editBtn);
-              ul.append(li);
+              $.ajax({
+                method: "GET",
+                url: url + "/cities",
+                dataType: "json"
+                })
+                  .done(function(response){
+                  ul.html("");
+                  insertCity(response);
+                    
+                
+                  })
+                  .fail(function(error){
+                  console.log('Error');
+                  console.log(error);
+                })
             })
             .fail(function(error){
             console.log('Error');
@@ -215,6 +218,7 @@ function cityBuilder(array){
             dataType: "json",
           })
           .done(function(response){
+
           })
           .fail(function(error){
             console.log('Error');

@@ -17,18 +17,8 @@
     },
     {
       "id": 4,
-      "name": "Edynburg",
-      "firestation": "false"
-    },
-    {
-      "id": 5,
-      "name": "Alakazam",
+      "name": "Granada",
       "firestation": "true"
-    },
-    {
-      "id": 6,
-      "name": "Alabad",
-      "firestation": "false"
     }
   ],
   "roads": [
@@ -37,11 +27,10 @@
       "name": [
         "Alhambra",
         "Barcelona"
-      ],
-      "time": 2
+      ]
     },
     {
-      "time": 123,
+      "time": 25,
       "name": [
         "Cadiz",
         "Barcelona"
@@ -51,26 +40,10 @@
     {
       "time": 2,
       "name": [
-        "Edynburg",
-        "Alhambra"
+        "Granada",
+        "Barcelona"
       ],
       "id": 2
-    },
-    {
-      "time": 2,
-      "name": [
-        "Alakazam",
-        "Barcelona"
-      ],
-      "id": 3
-    },
-    {
-      "time": 2,
-      "name": [
-        "Alabad",
-        "Barcelona"
-      ],
-      "id": 4
     }
   ],
   "max": {
