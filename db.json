@@ -14,16 +14,6 @@
       "id": 3,
       "name": "Cadiz",
       "firestation": "false"
-    },
-    {
-      "id": 4,
-      "name": "Dabadan",
-      "firestation": "false"
-    },
-    {
-      "id": 5,
-      "name": "Dabodan",
-      "firestation": "false"
     }
   ],
   "roads": [
@@ -42,22 +32,6 @@
         "Barcelona"
       ],
       "id": 1
-    },
-    {
-      "time": 2,
-      "name": [
-        "Dabadan",
-        "Barcelona"
-      ],
-      "id": 2
-    },
-    {
-      "time": 3,
-      "name": [
-        "Dabodan",
-        "Cadiz"
-      ],
-      "id": 3
     }
   ],
   "max": {

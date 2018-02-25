@@ -76,7 +76,7 @@ function cityBuilder(array){
                 return true
             }else{
                 console.log(unvisited);
-                currentObject.nodes.forEach(el=>{
+                nodes.forEach(el=>{
                     foundRoutesArray = [];
                     if(dijkstra(el.name, firestations, el.time+time, unvisited)===true){
                         foundRoutesArray.push(true)
