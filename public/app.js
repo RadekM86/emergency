@@ -8,12 +8,24 @@ $(function() {
 
 // shortest path algorithm in weighted undirected graph
 
+/**
+ * City Object constructor
+ * 
+ * @param {any} name 
+ * @param {any} firestation 
+ * @param {any} nodes 
+ */
 function City(name, firestation, nodes){
   this.name=name;
   this.firestation = firestation;
   this.nodes = nodes;
 }
-
+/**
+ * Nodes Object constructor
+ * 
+ * @param {any} cities 
+ * @param {any} time 
+ */
 function Nodes(cities, time){
   this.name = cities.join("");
   this.time = time
@@ -25,6 +37,13 @@ var max = 10;
 var cities = [];
 var roads = [];
 
+
+/** 
+ * Nodes constructor 
+ * 
+ * @param {any} name 
+ * @returns Nodes object from the given object name
+ */
 function nodefinder(name){
   let newArr =[];
   arr = roads.filter(elem => elem.name.indexOf(name)!==-1);
@@ -32,13 +51,26 @@ function nodefinder(name){
   return newArr
 }
 
+/**
+ * Function for building array of Cites objects
+ * 
+ * @param {any} array 
+ * @returns array of objects
+ */
 function cityBuilder(array){
   var cityMap = array.map(el=>new City(el.name, el.firestation, nodefinder(el.name)))
   return cityMap
 }
 
+
 //  API functions     
-    function insertCity(cities){
+
+/**
+ * API function for getting cites info
+ * 
+ * @param {any} cities 
+ */
+function insertCity(cities){
       getMax();
       getRoads();
       var cityMap = cityBuilder(cities);
@@ -48,8 +80,16 @@ function cityBuilder(array){
         return result[0]
       }
 
-
-      let dijkstra = (current, firestations, time, unvisited) =>{
+/**
+ * Algorithm for finding shortest route in undirectional wieghted graph with finite nodes within the given range
+ * 
+ * @param {any} current 
+ * @param {any} firestations 
+ * @param {any} time 
+ * @param {any} unvisited 
+ * @returns true if given node is in range
+ */
+let dijkstra = (current, firestations, time, unvisited) =>{
         let currentObject = getCityByName(current);
         unvisited = unvisited.filter(el=>el.name!==current)
         console.log(unvisited);
@@ -96,8 +136,8 @@ function cityBuilder(array){
       }
 
 
-      var firestations = cityMap.filter(el=>el.firestation==="true");
-      cities.forEach(function(cities){
+var firestations = cityMap.filter(el=>el.firestation==="true");
+cities.forEach(function(cities){
               console.log(`cityMap ${cityMap}`)
               var li = $('<li>')
               if(dijkstra(cities.name, firestations, 0, cityMap)===true){
@@ -133,8 +173,12 @@ function cityBuilder(array){
             });
     };
     
-    
-    function addCity(cities){
+/**
+ * Adds information to api of given input city name, roads and time
+ * 
+ * @param {any} cities 
+ */
+function addCity(cities){
       var url = "http://localhost:3000";
       var form = $('.add_City').submit(function(e){
         if(($('.get_name').val().length>0)&&($('.road').val().length>0)&&($('.time').val().length>0)){
@@ -208,8 +252,11 @@ function cityBuilder(array){
     
     }
     
-    
-    function removeCity(){
+/**
+ * removes city from DOM and from API database
+ * 
+ */
+function removeCity(){
       var deleteBtn = ul.on('click','.delete',function(){
         var thisbtn = $(this);
         var id = thisbtn.data('id');
@@ -232,8 +279,11 @@ function cityBuilder(array){
 
 
   
-  
-  function getMax(){
+/**
+ * gets max value from database and stores it in the global variable
+ * 
+ */
+function getMax(){
       $.ajax({
       method: "GET",
       url: url + "/max",
@@ -248,8 +298,11 @@ function cityBuilder(array){
         console.log(error);
       })
       };
-    
-  function getCities(){
+/**
+ * gets cities info form API database
+ * 
+ */
+function getCities(){
     $.ajax({
     method: "GET",
     url: url + "/cities",
@@ -265,8 +318,11 @@ function cityBuilder(array){
       console.log(error);
     })
     };
-  
-  function getRoads(){
+/**
+ * Gets roads info from API database
+ * 
+ */
+function getRoads(){
       $.ajax({
       method: "GET",
       url: url + "/roads",
