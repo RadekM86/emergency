@@ -18,5 +18,8 @@
   "homepage": "https://github.com/RadekM86/emergency#readme",
   "dependencies": {
     "json-server": "^0.12.1"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
   }
 }
