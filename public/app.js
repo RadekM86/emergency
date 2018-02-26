@@ -109,6 +109,7 @@ function cityBuilder(array){
               var title = $('<h3>').text(cities.name);
               var icon = $('<i class="fa fa-building"></i>');
               var info = $('<p class="info">')
+              var addBtn = $('<button>').html('Dodaj <i class="fa fa-plus"></i>').addClass('add')
               var infoplaceholder= (dijkstra(cities.name, firestations, 0, cityMap)===true)?"miasto w zasięgu straży pożarnej":"miasto poza zasięgiem straży pożarnej"
               info.text(cities.firestation==="true"?"posiada jednostkę straży pożarnej":infoplaceholder);
               var deleteBtn = $("<button class='deleteBtn'>").html('Usuń <i class="fa fa-remove"></i>').addClass('delete');
@@ -126,10 +127,7 @@ function cityBuilder(array){
               li.append(title);
               li.append(roadsList);
               li.append(info)
-              li.append(deleteBtn);
-
-
-              // li.append(editBtn);
+              li.append(deleteBtn)
               ul.append(li);
 
             });
@@ -139,7 +137,7 @@ function cityBuilder(array){
     function addCity(cities){
       var url = "http://localhost:3000";
       var form = $('.add_City').submit(function(e){
-        if($('.get_name').val().length>0){
+        if(($('.get_name').val().length>0)&&($('.road').val().length>0)&&($('.time').val().length>0)){
           e.preventDefault();
           $('.placeholder').html('')
           var inputName = $('.get_name').val();
@@ -198,9 +196,12 @@ function cityBuilder(array){
             console.log(error);
           })
         
-      }else{
+      }else if($('.get_name').val().length===0){
             e.preventDefault();
             var placeholder = $(".placeholder").html("<h3>Nazwa miasta powinna zawierać conajmniej jeden znak</h3>").addClass('placeholder')
+      }else {
+        e.preventDefault();
+        var placeholder = $(".placeholder").html("<h3>Miasto musi być połączone conajmniej jedną drogą z wyznaczonym czasem przejazdu</h3>").addClass('placeholder')
       }
     
     });

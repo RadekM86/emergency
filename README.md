@@ -45,7 +45,7 @@ npm run serve
 lub możemy go uruchomić ręcznie
 
 ```
-$ json-server --watch db.json
+json-server --watch db.json
 ```
 
 W przeglądarce wystarczy wpisać adres:
@@ -76,7 +76,10 @@ W tym przypadku $ajax został zastąpiony przez fetch() z parsowaniem do formatu
 
 ### Składniki aplikacji
 
-> [czcionka z google fonts](https://fonts.google.com/specimen/Roboto)
-> [ikony z Font Awesome](https://fontawesome.com/)
+> [czcionka z google fonts](https://fonts.google.com/specimen/Montserrat)
+
+ [ikony z Font Awesome](https://fontawesome.com/)
+ [zdjęcie tła z Unsplash](https://unsplash.com/photos/qQwxU7NJWTI)
+
 
 

@@ -14,16 +14,12 @@
       "id": 3,
       "name": "Cadiz",
       "firestation": "false"
-    },
-    {
-      "id": 4,
-      "name": "Granada",
-      "firestation": "true"
     }
   ],
   "roads": [
     {
       "id": 0,
+      "time": 2,
       "name": [
         "Alhambra",
         "Barcelona"

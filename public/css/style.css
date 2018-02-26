@@ -1,20 +1,42 @@
 :root{
   --ultramarine: #0b00db;
+  --offWhite: #F5F5F5;
  } 
  
 *{
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   /* border: 1px solid green */
 }
 body{
-  background-color: #F5F5F5;
+  background-color: var(--ultramarine);
+  background-image: url('/img/background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header{
+  text-align: center;
+  height: 150px;
+  width: 100%;
+  font-size: 2em;
+  line-height: .8em;
+}
+.header>h1{
+  font-weight: 200;
+}
+.header>h2{
+  font-size: 1.2em;
+  font-weight: 200;
 }
 
 .container {
   margin: 0 auto;
+  padding: 20px;
   max-width: 1000px;
+  background-color: var(--offWhite)
 }
 
 .list {
