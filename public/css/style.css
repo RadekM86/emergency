@@ -1,7 +1,7 @@
 :root{
   --ultramarine: #0b00db;
   --offWhite: #F5F5F5;
-  --offWhiteOp: rgba(245, 245, 245, .6);
+  --richRed: #c00606;
  } 
  
 *{
@@ -11,7 +11,7 @@
   /* border: 1px solid green */
 }
 body{
-  background-color: var(--ultramarine);
+  background-color: var(--richRed);
   background-image: url('/img/background.jpg');
   background-position: center;
   background-size: cover;
@@ -20,53 +20,74 @@ body{
 
 .header{
   text-align: center;
-  height: 200px;
+  min-height: 200px;
   width: 100%;
   font-size: 2em;
-  line-height: .8em;
+  color: #FFF;
 }
+
+
 .header>h1{
   margin-top: 80px;
   font-weight: 200;
+  line-height: .2em;
+  transition: all 0.5s ease;
 }
 .header>h2{
   font-size: 1.2em;
   font-weight: 200;
+  line-height: .5em;
+  transition: all 0.5s ease;
 }
 
 .container {
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   max-width: 1000px;
-  background-color: var(--offWhiteOp)
+  background-color: var(--offWhite)
 }
+
+
 
 .add_City{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 0;
+  margin: 0 auto;
+  padding: 10px;
 }
 
-.get_name, .road, .time{
+.get_name{
   padding: 10px;
-  margin: 20px;
-  width: 320px;
+  margin: 10px;
+  width: 85%;
+}
+.road{
+  padding: 10px;
+  margin: 10px;
+  width: 58%;
 }
 .time{
-  width: 120px;
+  padding: 10px;
+  margin: 10px;
+  width: 31%;
 }
 
+
 #addCity{
-  height: 60px;
-  width: 160px;
-  background-color: var(--ultramarine);
+  height: 40px;
+  width: 200px;
+  margin: 10px;
+  background-color: var(--richRed);
   color: #FFF;
   border:none;
+  align-self: flex-end;
+
 }
 
 .list {
-  padding: 10px;
+  padding: 5px;
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -85,7 +106,7 @@ hr{
   width: 100%;
   background-color: #FFF;
   border-left: 4px solid #FFF;
-  margin: 1px auto;
+  margin: 2px auto;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -96,6 +117,7 @@ hr{
   animation: slideDown 0.5s forwards;
   perspective: 100px;
   flex-wrap: wrap;
+
 }
 
 .list .info{
@@ -103,7 +125,6 @@ hr{
 }
 
 .list h3 {
-  margin: 5px;
   font-weight: 400;
   width: 20%;
 }
@@ -183,9 +204,31 @@ button {
     font-size: 0.9em;
     font-weight: 400;
   }
+  .get_name{
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+  }
+  .road{
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+  }
+  .time{
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+  }
 
 }
-@media (max-width: 450px) {
+@media (max-width: 500px) {
+  .header>h1, .header>h2{
+    font-size: 1em;
+    line-height: 1em;
+  }
+  .header>h2{
+    font-size: .8em
+  }
   .list>li {
     flex-direction: column
   }
@@ -208,5 +251,11 @@ button {
     margin: 0 10px;
     font-size: 1.2em;
     font-weight: 400;
+  }
+  
+  .get_name, .road, .time{
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
   }
 }
